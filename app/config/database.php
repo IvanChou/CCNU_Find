@@ -25,8 +25,8 @@ define('IS_DB_ACTIVE', TRUE);
 //每增加一个数据库，增加一条配置信息，索引为数据库分组，db.php 会用到,extract
 $db_conf['default'] = array(
 	'db_username' => 'root',
-	'db_passwd' => '123456',
-	'db_database' => 'testdata'
+	'db_passwd' => 'root',
+	'db_database' => 'ccnu_find'
 	// 		'db_host' => 'localhost',	//默认 localhost
 	// 		'db_port' => '3306',		//默认 3306
 );
