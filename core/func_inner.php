@@ -162,17 +162,14 @@ function p2q($ca = null) {
 			for ($i = 1; $i < $n + 2; $i++) {
 				array_shift($spilt);
 			}
-			
-			foreach ($spilt as $k => $v) {
-				$_k = $k + 1;
-				$extra .= "&wphp_param{$_k}={$v}";
-			}
 		}
 	}
-	$url_query = PARAM_CONTROLLER ."={$c}&". PARAM_ACTION ."={$a}" . $extra;
+	//$url_query = "c={$c}&a={$a}" . $extra;
+	$url_query = PARAM_CONTROLLER . '=' . $c . '&' . PARAM_ACTION . '=' . $a;
+
 	return array(
-		'c' => $c,
-		'a' => $a,
+		PARAM_CONTROLLER => $c,
+		PARAM_ACTION => $a,
 		//'segment' => $spilt,
 		'url_query' => $url_query
 	);
@@ -258,11 +255,11 @@ function log_error($message = '') {
 		
 		//error_log 函数需要启用完整路径
 		//其实这个完全可以直接 a+ 方式写文件，没必要非得用 error_log 函数
-		$log_path = SYS_PATH . '/' . APP_NAME . '' . LOG_PATH . '/' . date('Y-m') . '.txt';
+		$log_path = SYS_PATH . APP_NAME . LOG_PATH . '/' . date('Y-m') . '.txt';
 		
 		if (function_exists('error_log')) {
-			if (!is_writeable(SYS_PATH . '/' . APP_NAME . '' . LOG_PATH . '/')) {
-				echo "\n", 'error log permition denied!';
+			if (!is_writeable(SYS_PATH . APP_NAME . LOG_PATH . '/')) {
+				echo '<br />' . 'error log permition denied!';
 				die;
 			}
 			error_log($error, 3, $log_path);
@@ -426,4 +423,5 @@ function __autoload($class) {
 	}
 	$flag or show_error("class {$class} not found");
 }
+
 

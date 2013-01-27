@@ -95,7 +95,6 @@ $autoload_config = array(
 //加载扩展函数
 // require APP_NAME . 'func/xxx.php';
 require APP_NAME . 'func/custom.php';
-require APP_NAME . 'func/verifycode.php';
 
 //加载其它配置文件
 // require APP_NAME . 'config/yyy.php';
