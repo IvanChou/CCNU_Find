@@ -1,4 +1,0 @@
-wphp
-====
-
-A WhitePHP FrameWork

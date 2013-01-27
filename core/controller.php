@@ -14,8 +14,6 @@
  * @link http://weibo.com/itbudaoweng
  */
 
-class Controller {
-	public function index() {
-		echo 'I am here to ensure it works well, man!';
-	}
+abstract class Controller {
+	abstract function index();
 }

@@ -40,10 +40,10 @@ define('DEFAULT_CONTROLLER', 'hello');
 define('DEFAULT_ACTION', 'index');
 
 //获取控制器的参数名
-define('PARAM_CONTROLLER', 'c');
+define('PARAM_CONTROLLER', 'method');
 
 //获取方法的参数名
-define('PARAM_ACTION','a');
+define('PARAM_ACTION','target');
 
 //定义日志目录，相对于APP_PATH，不必写尾部斜线
 //请使用 ../../ 方式将目录置于框架内不能访问的位置
