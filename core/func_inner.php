@@ -169,7 +169,7 @@ function p2q($ca = null) {
 			}
 		}
 	}
-	$url_query = "c={$c}&a={$a}" . $extra;
+	$url_query = PARAM_CONTROLLER ."={$c}&". PARAM_ACTION ."={$a}" . $extra;
 	return array(
 		'c' => $c,
 		'a' => $a,
