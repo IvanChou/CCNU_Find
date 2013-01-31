@@ -259,7 +259,7 @@ function log_error($message = '') {
 		
 		if (function_exists('error_log')) {
 			if (!is_writeable(SYS_PATH . APP_NAME . LOG_PATH . '/')) {
-				echo '<br />' . 'error log permition denied!';
+				echo "<br>\n", 'error log permition denied!';
 				die;
 			}
 			error_log($error, 3, $log_path);
@@ -423,5 +423,4 @@ function __autoload($class) {
 	}
 	$flag or show_error("class {$class} not found");
 }
-
 

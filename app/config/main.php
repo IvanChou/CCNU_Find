@@ -40,10 +40,10 @@ define('DEFAULT_CONTROLLER', 'hello');
 define('DEFAULT_ACTION', 'index');
 
 //获取控制器的参数名
-define('PARAM_CONTROLLER', 'method');
+define('PARAM_CONTROLLER', 'c');
 
 //获取方法的参数名
-define('PARAM_ACTION','target');
+define('PARAM_ACTION','a');
 
 //定义日志目录，相对于APP_PATH，不必写尾部斜线
 //请使用 ../../ 方式将目录置于框架内不能访问的位置
@@ -95,6 +95,7 @@ $autoload_config = array(
 //加载扩展函数
 // require APP_NAME . 'func/xxx.php';
 require APP_NAME . 'func/custom.php';
+require APP_NAME . 'func/verifycode.php';
 
 //加载其它配置文件
 // require APP_NAME . 'config/yyy.php';
