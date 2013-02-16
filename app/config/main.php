@@ -4,8 +4,8 @@
  * 配置文件
  * 这是你可以修改的文件
  *
- * filename:	main.php
- * charset:		UTF-8
+ * filename:    main.php
+ * charset:        UTF-8
  * create date: 2012-5-25
  *
  * @author Zhao Binyan <itbudaoweng@gmail.com>
@@ -40,10 +40,10 @@ define('DEFAULT_CONTROLLER', 'hello');
 define('DEFAULT_ACTION', 'index');
 
 //获取控制器的参数名
-define('PARAM_CONTROLLER', 'c');
+define('PARAM_CONTROLLER', 'method');
 
 //获取方法的参数名
-define('PARAM_ACTION','a');
+define('PARAM_ACTION', 'target');
 
 //定义日志目录，相对于APP_PATH，不必写尾部斜线
 //请使用 ../../ 方式将目录置于框架内不能访问的位置
@@ -64,13 +64,13 @@ define('IS_HIDE_INDEX_PAGE', true);
  * 2，将规则写入前端控制器目录中的 .htaccess
  * 相关规则可参考下面的代码【注意：index.php 代表入口文件】
  *
- RewriteEngine On
- RewriteCond %{REQUEST_FILENAME} !-f
- RewriteCond %{REQUEST_FILENAME} !-d
- RewriteRule ^(.*)$ index.php?$1 [L]
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?$1 [L]
  * sae 环境隐藏入口文件代码可参考
- handle:
- - rewrite: if( !is_file() && !is_dir()) goto "index.php?%{QUERY_STRING}"
+handle:
+- rewrite: if( !is_file() && !is_dir()) goto "index.php?%{QUERY_STRING}"
  */
 
 // 定义，可在程序中随时变更
@@ -82,14 +82,14 @@ $theme_package = 'default';
 //path 对于的为相对于 SYS_PATH 的路径
 //ext 表示 class+ext 中的文件后缀 ext
 $autoload_config = array(
-		array(
-				'path' => APP_NAME . 'lib/',
-				'ext' => '.class.php',
-		),
-		array(
-				'path' => APP_NAME . 'model/',
-				'ext' => '.php',
-		),
+    array(
+        'path' => APP_NAME . 'lib/',
+        'ext' => '.class.php',
+    ),
+    array(
+        'path' => APP_NAME . 'model/',
+        'ext' => '.php',
+    ),
 );
 
 //加载扩展函数

@@ -53,10 +53,11 @@ switch (SYS_MODE) {
 require CORE_NAME . 'func_inner.php';
 require CORE_NAME . 'func.php';
 require CORE_NAME . 'controller.php';
+require CORE_NAME . 'model.php';
 
 if (IS_DB_ACTIVE) {
-	require CORE_NAME . 'db.php';
-	require CORE_NAME . 'model.php';
+	require CORE_NAME . 'db.link.php';
+	require CORE_NAME . 'db.driver.class.php';
 }
 
 //将 PATH_INFO 和 QUERY_STRING 统一起来

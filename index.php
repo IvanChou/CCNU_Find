@@ -1,11 +1,11 @@
 <?php
 /**
  * 前端控制器，即入口文件
- * 
- * filename:	index.php
- * charset:		UTF-8
+ *
+ * filename:    index.php
+ * charset:        UTF-8
  * create date: 2012-5-25
- * 
+ *
  * @author Zhao Binyan <itbudaoweng@gmail.com>
  * @copyright 2011-2012 Zhao Binyan
  * @link http://yungbo.com
