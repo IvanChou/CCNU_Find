@@ -315,6 +315,19 @@ class DbDriver {
 		return $ret;
 	}
 
+    public function query2array($sql) {
+        $q = $this->query($sql);
+        if ($q && $q->num_rows > 0) {
+            //mysqli_result::fetch_assoc
+            while ($r = $q->fetch_assoc()) {
+                $ret[] = $r;
+            }
+            $q->close();
+        }
+
+        return $ret;
+    }
+
 	//主库基础查询
 	private function _base_query($sql) {
 		if (!$this->db->ping() or $this->db->errno == 2006) {
