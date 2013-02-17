@@ -38,6 +38,6 @@
 
 	}
 	
-	
-	echo json_encode($arr);
+	var_dump($arr);
+	//echo json_encode($arr);
 	

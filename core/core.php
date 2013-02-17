@@ -121,7 +121,10 @@ if (file_exists($file)) {
 $c = ucfirst(strtolower($c));
 $c = new $c;
 
-$c->$a();
+//其余 REQUEST 参数，作为 param array 传入方法中
+$p = array_diff_key($_REQUEST,array(PARAM_CONTROLLER=>'',PARAM_ACTION=>""));
+
+$c->$a($p);
 
 function_exists('wphp_custom_after_instance') && wphp_custom_after_instance();
 

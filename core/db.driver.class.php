@@ -315,6 +315,12 @@ class DbDriver {
 		return $ret;
 	}
 
+    /**
+     * 调用主 query 函数 并将结果转化成数组返回
+     * @author  ichou   <xwormc@gmial.com>  2013/02/17
+     * @param   string  $sql
+     * @return  array
+     */
     public function query2array($sql) {
         $q = $this->query($sql);
         if ($q && $q->num_rows > 0) {

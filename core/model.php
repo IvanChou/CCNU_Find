@@ -16,7 +16,7 @@ abstract class Model
     /**
      * Get a Db Link Instance of the given table.
      *
-     * @author    ichou    <xwormc@gmial.com>    @2013-1-31
+     * @author    ichou    <xwormc@gmial.com>    2013/01/31
      * @param    string    $table    The given table's name.
      * @param    string    $group    The database setting group name.
      * @return    object|false
