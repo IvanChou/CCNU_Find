@@ -1,43 +1,40 @@
 <?php
+/**
+ * 前端控制器，即入口文件
+ * 
+ * filename:	index.php
+ * charset:		UTF-8
+ * create date: 2012-5-25
+ * 
+ * @author Zhao Binyan <itbudaoweng@gmail.com>
+ * @copyright 2011-2012 Zhao Binyan
+ * @link http://yungbo.com
+ * @link http://weibo.com/itbudaoweng
+ */
 
-	//设置为UTF格式的返回
-	header("Content-Type:text/html;charset=utf-8");
+//定义入口文件所在目录
+//如无特殊说明，定义目录均存在尾部斜线，框架内同
+define('SYS_PATH', rtrim(dirname(__FILE__), '\/') . '/');
 
-	if($_GET['method']=='read'){
-		
-		//首页一卡通信息
-		//api/?method=read&target=card&page=-1
-		if($_GET['target']=='card'&&$_GET['page']==-1){
-			$arr = array ();
-			for ($i=0; $i < 8; $i++) { 
-				$arr[$i] = array ('id'=>'1'.$i,'card_id'=>'20092*'.$i.'473','place'=>'学子食堂','date'=>'2013-01-0'.$i);
-			}
-		}
-		
-		//分类页中的列表信息
-		//api/?method=read&target=claim&page=1
-		if($_GET['target']=='claim' || $_GET['target']=='find' && $_GET['page']>0){
-			$arr = array ();
-			for ($i=0; $i < 11; $i++) {
-				$arr[$i] = array ('id'=>'2'.$i,'name'=>'白色金立手机带黑保护套','place'=>'行政楼副楼二楼','date'=>'2013-01-0'.$i,
-				'state'=>'process',
-				'info'=>'白色触屏智能手机，型号为金立GN106，八成新，外有黑色保护套，里面没有插SIM卡，壁纸为蓝天下的鹅，存有100多个联系人，大量的课件，对我很重要，希望拾到者与我联系，本人将不胜感激!');
-			}
-		}		
+//定义入口文件名称
+define('INDEX_PAGE', basename(__FILE__));
 
-			//首页招领信息 & 首页失物信息
-    		//api/?method=read&target=claim&page=-1
-    		if($_GET['target']=='claim' || $_GET['target']=='find' && $_GET['page']==-1){
-    			$arr = array ();
-    			for ($i=0; $i < 5; $i++) {
-    				$arr[$i] = array ('id'=>'2'.$i,'name'=>'白色金立手机带黑保护套','place'=>'行政楼副楼二楼','date'=>'2013-01-0'.$i,
-    				'state'=>'process',
-    				'info'=>'白色触屏智能手机，型号为金立GN106，八成新，外有黑色保护套，里面没有插SIM卡，壁纸为蓝天下的鹅，存有100多个联系人，大量的课件，对我很重要，希望拾到者与我联系，本人将不胜感激!');
-    			}
-    		}
+// APP_NAME 和 CORE_NAME 可自己定义
+/* ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ */
 
-	}
-	
-	var_dump($arr);
-	//echo json_encode($arr);
-	
+//应用名，存在尾部斜线，这个要注意，尤其是用到比较的时候
+define('APP_NAME', '../../app/');
+
+//核心文件目录名，存在尾部斜线，这个要注意，尤其是用到比较的时候
+define('CORE_NAME', '../../core/');
+
+/* ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ */
+
+//定义应用的绝对路径
+define('APP_PATH', SYS_PATH . APP_NAME);
+
+//定义核心目录的绝对路径
+define('CORE_PATH', SYS_PATH . CORE_NAME);
+
+//载入核心文件
+require CORE_NAME . 'core.php';
