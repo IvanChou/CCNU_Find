@@ -3,26 +3,56 @@
 class Read extends Controller {
 	
 	public function __construct() {
-		$this->info = new Info();
+		$this->Info = new Info();
+        $this->Card = new Card();
 	}
 
-	public function claim() {
-		var_dump($this->_format_time($this->info->get_claim()));
+	public function claim($param) {
+        $page = isset($param['page']) ? $param['page'] : 1;
+        $num = $page < 1 ? 5 : 10;
+        echo json_encode($this->_format($this->Info->get_claim($num)));
 	}
+
+    public function find($param) {
+        $page = isset($param['page']) ? $param['page'] : 1;
+        $num = $page < 1 ? 5 : 10;
+        echo json_encode($this->_format($this->Info->get_find($num)));
+    }
 
     public function card($param) {
         $page = isset($param['page']) ? $param['page'] : 1;
-        $num = $page < 1 ? 5 : 8;
-        var_dump($this->_format_time($this->info->get_card($num)));
+        $num = $page < 1 ? 8 : 20;
+        echo json_encode($this->_format($this->Card->get_card($num)));
     }
 
-    private function _format_time($array) {
+    private function _format($array) {
+        $result = Array();
         foreach($array as $k=>$v) {
-            isset($v['date']) && $array[$k]['date']=date('Y-m-d',$v['date']);
-            isset($v['time']) && $array[$k]['time']=date('Y-m-d h:i:s',$v['time']);
+            isset($v['id']) && $result[$k]['id']=$v['id'];
+
+            if(isset($v['card_id'])) {
+                $result[$k]['card_id']=$v['card_id'];
+            } else {
+                isset($v['name']) && $result[$k]['name']=$v['name'];
+                if(isset($v['state'])) {
+                    switch ($v['state']){
+                        case 0 : $result[$k]['state'] = "process";
+                            break;
+                        case 1 : $result[$k]['state'] = "success";
+                            break;
+                        case -1 : $result[$k]['state'] = "locked";
+                            break;
+                    }
+                }
+                isset($v['info']) && $result[$k]['info']=$v['info'];
+            }
+
+            isset($v['place']) && $result[$k]['place']=$v['place'];
+            isset($v['date']) && $result[$k]['date']=date('Y-m-d',$v['date']);
+            //isset($v['time']) && $result[$k]['time']=date('Y-m-d h:i:s',$v['time']);
         }
 
-        return $array;
+        return $result;
     }
 	
 	

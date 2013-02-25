@@ -13,22 +13,20 @@
 abstract class Model
 {
 
+    public function __construct() {
+        $this->db = $this->connect_db();
+    }
+
     /**
-     * Get a Db Link Instance of the given table.
+     * Get a Db Link Instance
      *
-     * @author    ichou    <xwormc@gmial.com>    2013/01/31
-     * @param    string    $table    The given table's name.
-     * @param    string    $group    The database setting group name.
-     * @return    object|false
+     * @author  ichou   <xwormc@gmial.com>  2013/01/31
+     * @param   string  $group  The database setting group name.
+     * @return  object
      */
-    protected function set_db_table($table = null, $group = 'default')
+    protected function connect_db($group = 'default')
     {
-        if ($table == null) {
-            log_error("the function \"set_db_table\" must have a parm as table name.");
-            show_error("the function \"set_db_table\" must have a parm as table name.");
-            die();
-        }
-        return DbDriver::singleton($table, 'default');
+        return DbDriver::singleton($group);
     }
 
 }

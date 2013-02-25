@@ -45,7 +45,7 @@ class DbDriver {
 	public $tb_name;
 		
 	//是否输出 sql 语句
-	public static $show_sql = TRUE;
+	public static $show_sql = FALSE;
 
 	//当前实例数据库组
 	public $db_group;
@@ -71,7 +71,7 @@ class DbDriver {
 	 * @param string $tb_name 默认表名，使用过程中可以随时变更 Model::$tb_name = 'new_tb_name';
 	 * @param string $db_group 数据库配置文件
 	 */
-	public static function singleton($tb_name = 'sample_table_name', $db_group = 'default') {
+	public static function singleton($db_group = 'default') {
 	
 		//当不存在对象或者启用新的数据库时重新连库
 		if (!(self::$singleton instanceof self)) {
@@ -83,12 +83,7 @@ class DbDriver {
 		} else {
 			self::$singleton = self::$connection_arr[$db_group];
 		}
-	
-		//总是保持表名最新
-		if ($tb_name) {
-			self::$singleton->tb_name = $tb_name;
-		}
-	
+
 		return self::$singleton;
 	}
 	
@@ -108,6 +103,16 @@ class DbDriver {
 			$this->db_slave = db_init($db_group . '_slave');
 		}
 	}
+
+    /**
+     * 设置待操作表名
+     *
+     * @author  ichou   <xwormc@gamil.com>  2013/02/22
+     * @param   string  $tb_name
+     */
+    public function set_table($tb_name) {
+        $tb_name && $this->tb_name = $tb_name;
+    }
 
 	/**
 	 * 增加数据
