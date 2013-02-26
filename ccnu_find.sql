@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50529
 File Encoding         : 65001
 
-Date: 2013-01-27 13:16:54
+Date: 2013-02-26 13:29:01
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -28,11 +28,12 @@ CREATE TABLE `cf_card` (
   PRIMARY KEY (`id`),
   KEY `info_id` (`info_id`),
   CONSTRAINT `FK:card_info` FOREIGN KEY (`info_id`) REFERENCES `cf_info` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cf_card
 -- ----------------------------
+INSERT INTO `cf_card` VALUES ('1', '2009213640', '胡正', '物化', '3');
 
 -- ----------------------------
 -- Table structure for `cf_fuckccnu`
@@ -79,7 +80,7 @@ CREATE TABLE `cf_info` (
   `place` varchar(40) DEFAULT NULL,
   `date` int(11) unsigned DEFAULT NULL,
   `image` int(6) unsigned DEFAULT NULL,
-  `detail` text NOT NULL,
+  `info` text,
   `state` tinyint(2) NOT NULL COMMENT '0 - 进行中, 1 - 已成功, -1 - 过期',
   `time` int(11) unsigned NOT NULL,
   PRIMARY KEY (`id`),
@@ -89,11 +90,16 @@ CREATE TABLE `cf_info` (
   CONSTRAINT `FK:info_img` FOREIGN KEY (`image`) REFERENCES `cf_image` (`id`),
   CONSTRAINT `FK:info_sort` FOREIGN KEY (`sort`) REFERENCES `cf_sort` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK:info_user` FOREIGN KEY (`stu_id`) REFERENCES `cf_user` (`stu_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cf_info
 -- ----------------------------
+INSERT INTO `cf_info` VALUES ('2', '2009213663', '2', '5', '火腿肠 黑色 G9', '东八208附近', '1368227611', null, '没什么好说的 可能是被偷了', '0', '1361081787');
+INSERT INTO `cf_info` VALUES ('3', '2009213663', '1', '1', '2009213640', '图书馆9楼 咖啡厅', '1361081787', null, '', '0', '1361081787');
+INSERT INTO `cf_info` VALUES ('4', '2009213663', '2', '3', '白色金立手机带黑保护套', '行政楼副楼二楼', '1368227611', null, '白色触屏智能手机，型号为金立GN106，八成新，外有黑色保护套，里面没有插SIM卡，壁纸为蓝天下的鹅，存有100多个联系人，大量的课件，对我很重要，希望拾到者与我联系，本人将不胜感激!', '0', '1361081787');
+INSERT INTO `cf_info` VALUES ('5', '2009213663', '1', '5', '火腿肠 黑色 G9', '东八208附近', '1368227611', null, '一不小心就捡到了 运气背到家了 谁的？ 来领吧', '0', '1361081787');
+INSERT INTO `cf_info` VALUES ('6', '2009213663', '1', '5', '火腿肠 黑色 G10', '东八209附近', '1368227611', null, '没什么好说的 可能是又被偷了', '0', '1361081787');
 
 -- ----------------------------
 -- Table structure for `cf_sort`
@@ -103,11 +109,18 @@ CREATE TABLE `cf_sort` (
   `id` tinyint(2) unsigned NOT NULL AUTO_INCREMENT,
   `sort_name` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cf_sort
 -- ----------------------------
+INSERT INTO `cf_sort` VALUES ('1', '一卡通');
+INSERT INTO `cf_sort` VALUES ('2', '书籍资料');
+INSERT INTO `cf_sort` VALUES ('3', '衣服饰品');
+INSERT INTO `cf_sort` VALUES ('4', '随身物品');
+INSERT INTO `cf_sort` VALUES ('5', '电子数码');
+INSERT INTO `cf_sort` VALUES ('6', '卡类证件');
+INSERT INTO `cf_sort` VALUES ('7', '其他物品');
 
 -- ----------------------------
 -- Table structure for `cf_user`
@@ -116,7 +129,7 @@ DROP TABLE IF EXISTS `cf_user`;
 CREATE TABLE `cf_user` (
   `stu_id` int(11) unsigned NOT NULL,
   `stu_name` varchar(20) DEFAULT NULL,
-  `stu_tel` int(12) unsigned DEFAULT NULL,
+  `stu_tel` bigint(14) unsigned DEFAULT NULL,
   `stu_mail` varchar(30) DEFAULT NULL,
   `stu_qq` int(11) unsigned DEFAULT NULL,
   `stu_addr` varchar(50) DEFAULT NULL,
@@ -128,3 +141,4 @@ CREATE TABLE `cf_user` (
 -- ----------------------------
 -- Records of cf_user
 -- ----------------------------
+INSERT INTO `cf_user` VALUES ('2009213663', '周一', '13114375536', 'xworm@xworm.net', '645655198', null, '');
