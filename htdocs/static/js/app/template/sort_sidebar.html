@@ -1,0 +1,5 @@
+<ul id="side-sort">
+    <% _.each(sorts,function(sort){ %>
+    <li class="transition"><a href="#<%-target %>/<%-sort['url'] %>/1"><%-sort['name'] %></a></li>
+    <% }) %>
+</ul>

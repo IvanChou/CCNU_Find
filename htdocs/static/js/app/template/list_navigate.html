@@ -1,0 +1,8 @@
+<div id="page-navigate">
+    <% if(currentPage>1){ %>
+    <span class="navigate" id="prePage"><a href="#<%- currentUrl %>/<%- currentPage *1-1  %>">上一页</a></span>
+    <% } %>
+    <% if(isNextPage){ %>
+    <span class="navigate" id="nextPage"><a href="#<%- currentUrl %>/<%- currentPage *1+1  %>">下一页</a></span>
+    <% } %>
+</div>
