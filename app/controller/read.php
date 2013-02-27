@@ -5,23 +5,25 @@ class Read extends Controller {
 	public function __construct() {
 		$this->Info = new Info();
         $this->Card = new Card();
+
+        $this->self_conf = get_conf('self_conf');
 	}
 
 	public function claim($param) {
         $page = isset($param['page']) ? $param['page'] : 1;
-        $num = $page < 1 ? 5 : 10;
+        $num = $page < 1 ? $this->self_conf['index_claims'] : $this->self_conf['claims_per_page'];
         echo json_encode($this->_format($this->Info->get_claim($num)));
 	}
 
     public function find($param) {
         $page = isset($param['page']) ? $param['page'] : 1;
-        $num = $page < 1 ? 5 : 10;
+        $num = $page < 1 ? $this->self_conf['index_finds'] : $this->self_conf['finds_per_page'];
         echo json_encode($this->_format($this->Info->get_find($num)));
     }
 
     public function card($param) {
         $page = isset($param['page']) ? $param['page'] : 1;
-        $num = $page < 1 ? 8 : 20;
+        $num = $page < 1 ? $this->self_conf['index_cards'] : $this->self_conf['cards_per_page'];
         echo json_encode($this->_format($this->Card->get_card($num)));
     }
 
@@ -34,16 +36,7 @@ class Read extends Controller {
                 $result[$k]['card_id']=$v['card_id'];
             } else {
                 isset($v['name']) && $result[$k]['name']=$v['name'];
-                if(isset($v['state'])) {
-                    switch ($v['state']){
-                        case 0 : $result[$k]['state'] = "process";
-                            break;
-                        case 1 : $result[$k]['state'] = "success";
-                            break;
-                        case -1 : $result[$k]['state'] = "locked";
-                            break;
-                    }
-                }
+                isset($v['state']) && $result[$k]['state'] = $this->self_conf['state'][$v['state']];
                 isset($v['info']) && $result[$k]['info']=$v['info'];
             }
 

@@ -80,6 +80,8 @@ function_exists('wphp_custom_change_query_string') && $query_string = wphp_custo
 
 set_conf('query_string', $query_string);
 set_conf('theme_package', $theme_package);
+//加载网站自身相关设置（ccnu.php）
+set_conf('self_conf', $self_conf);
 
 // $c controller
 $c = get_param(PARAM_CONTROLLER) ? get_param(PARAM_CONTROLLER) : DEFAULT_CONTROLLER;

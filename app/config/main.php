@@ -99,4 +99,4 @@ require APP_NAME . 'func/custom.php';
 //加载其它配置文件
 // require APP_NAME . 'config/yyy.php';
 require APP_NAME . 'config/database.php';
-
+require APP_NAME . 'config/ccnu.php';
