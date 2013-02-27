@@ -1,21 +1,11 @@
-define(["app/view/nav","app/view/list_content","app/view/side_nav"],function(setNav,getListView,getSideNavView){
+define(["router/list_common"],
 
-    var ListView , SideNavVIew ,sort;
+    function(list_common){
 
-    return function(page){
-
-        if(arguments.length===2){
-            sort = arguments[0];
-            page = arguments[1];
+        return function(page){
+            list_common.call(this,page,"find");
         }
 
-        ListView =  getListView('find',sort,page);
-        SideNavVIew = getSideNavView('find');
-
-        new ListView;
-        new SideNavVIew;
-
-        setNav("find");
     }
 
-});
+);

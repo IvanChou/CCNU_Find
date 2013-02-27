@@ -1,4 +1,4 @@
-define(["app/model/card_item","core/backbone"],function(CardItem){
+define(["model/card_item","core/backbone"],function(CardItem){
 
     return Backbone.Collection.extend({
 
