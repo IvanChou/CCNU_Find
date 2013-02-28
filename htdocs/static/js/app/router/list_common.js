@@ -1,22 +1,21 @@
 define(["view/nav","view/list_content","view/sort_sidebar"],
     function(setNav,getListView,getSideNavView){
 
-        var ListView , SideNavVIew ,sort;
+        var ListView , SideNavVIew;
 
-        return function(page,type){
+        return function(args,target){
 
-            if(arguments.length===2){
-                sort = arguments[0];
-                page = arguments[1];
+            if(args.length===1){
+                args[1] = 1;
             }
 
-            ListView =  getListView(type,sort,page);
-            SideNavVIew = getSideNavView(type);
+            ListView =  getListView(target,args[0],args[1]);
+            SideNavVIew = getSideNavView(target);
 
             new ListView;
             new SideNavVIew;
 
-            setNav.call(this,type);
+            setNav.call(this,target);
         }
 
     });

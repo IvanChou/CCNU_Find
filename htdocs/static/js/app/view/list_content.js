@@ -57,6 +57,8 @@ define(["collection/item_list","view/common_item","text!template/list_content.ht
                     var navigateTemplate = _.template(list_navigate);
                     this.$el.append(navigateTemplate({
                         currentPage : page,
+                        prePage : page - 1 ,
+                        nextPage : page - -1 ,
                         currentUrl : [target,sort].join("/"),
                         isNextPage : list.length > 10
                     }))
