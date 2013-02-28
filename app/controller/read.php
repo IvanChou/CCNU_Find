@@ -3,28 +3,38 @@
 class Read extends Controller {
 	
 	public function __construct() {
-		$this->Info = new Info();
+		$this->Item = new Item();
         $this->Card = new Card();
 
         $this->self_conf = get_conf('self_conf');
 	}
 
 	public function claim($param) {
-        $page = isset($param['page']) ? $param['page'] : 1;
-        $num = $page < 1 ? $this->self_conf['index_claims'] : $this->self_conf['claims_per_page'];
-        echo json_encode($this->_format($this->Info->get_claim($num)));
+        $req = $this->_pretreat($param);
+        out_put($this->_format($this->Item->get_items(2,$req)));
 	}
 
     public function find($param) {
-        $page = isset($param['page']) ? $param['page'] : 1;
-        $num = $page < 1 ? $this->self_conf['index_finds'] : $this->self_conf['finds_per_page'];
-        echo json_encode($this->_format($this->Info->get_find($num)));
+        $req = $this->_pretreat($param);
+        out_put($this->_format($this->Item->get_items(1,$req)));
     }
 
     public function card($param) {
         $page = isset($param['page']) ? $param['page'] : 1;
         $num = $page < 1 ? $this->self_conf['index_cards'] : $this->self_conf['cards_per_page'];
-        echo json_encode($this->_format($this->Card->get_card($num)));
+        out_put($this->_format($this->Card->get_card($num)));
+    }
+
+    private  function _pretreat($param) {
+        $sort = isset($param['sort']) ? array_search($param['sort'],$this->self_conf['sort']) : null;
+        $param['sort'] === "all" && $sort = null;
+        ($sort === false) && show_error("Notice: sort 参数错误.<br>\r\n");
+
+        $page = isset($param['page']) ? (int)$param['page'] : 1;
+        $num = $page < 1 ? $this->self_conf['index_items'] : $this->self_conf['items_per_page'];
+        $offset = $page > 1 ? ($page-1)*$this->self_conf['items_per_page']+1 : 0;
+
+        return array($sort,$num,$offset);
     }
 
     private function _format($array) {

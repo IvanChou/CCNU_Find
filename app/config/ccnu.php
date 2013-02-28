@@ -24,11 +24,9 @@ $self_conf = array(
         '-1' =>  "locked"
     ),
 
-    'index_claims'   =>  5,
-    'index_finds'    =>  5,
+    'index_items'   =>  5,
     'index_cards'    =>  8,
-    'claims_per_page'    =>  10,
-    'finds_per_page'     =>  10,
+    'items_per_page'    =>  10,
     'cards_per_page'     =>  10,
 
 );

@@ -45,7 +45,7 @@ class DbDriver {
 	public $tb_name;
 		
 	//是否输出 sql 语句
-	public static $show_sql = FALSE;
+	public static $show_sql;
 
 	//当前实例数据库组
 	public $db_group;
@@ -61,6 +61,17 @@ class DbDriver {
 	 * @param string $db_group 数据库组 default 
 	 */
 	private function __construct($db_group = 'default') {
+
+        switch (SYS_MODE) {
+            case 'development' : self::$show_sql = TRUE;
+                break;
+            case 'testing' : self::$show_sql = FALSE;
+                break;
+            case 'production' : self::$show_sql = FALSE;
+                break;
+            default : self::$show_sql = FALSE;
+        }
+
 		return self::connect($db_group);
 	}
 	
