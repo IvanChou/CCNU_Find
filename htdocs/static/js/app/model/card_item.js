@@ -1,22 +1,28 @@
 define(["core/backbone"],function(){
 
-    var _this_change_card = [];
+    var _current;
 
     return Backbone.Model.extend({
 
-        /*出于隐私考虑，将学号的第六位隐蔽*/
-        hideCard : function(){
-            _this_change_card.length = 0;
-            _this_change_card = (""+this.get("card_id")).split("");
-           _this_change_card[5] = '*';
-            return this.set( "card_id",_this_change_card.join(""));
+        hideCard : /**
+         * 将学号的六七位隐藏
+         * @returns {*}
+         */
+            function(){
+            _current = (""+this.get("card_id")).split("");
+            _current[5] = '*';
+            _current[6] = '*';
+            return this.set( "card_id",_current.join(""));
         },
 
-        /*根据id获得最后的url*/
-        url : function(){
+        url : /**
+         * 根据当前ID获取最后的URL地址
+         * @returns {string}
+         */
+            function(){
             return ['#item/',this.get("id")].join("");
         }
 
-   });
+    });
 
 });

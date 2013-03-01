@@ -5,7 +5,6 @@
     <title>华中师范大学失物招领平台</title>
     <link rel="stylesheet" href="static/css/style.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="static/css/app.css" type="text/css" media="screen" />
-    <script data-main="static/js/main.js" src="static/js/core/require-jquery.js" type="text/javascript"></script>
 </head>
 <body>
     <div id="top">
@@ -43,64 +42,10 @@
     </div>
     <div id="footer">
         <p>© 2012－2013 华中师范大学团委学生会, all rights reserved<br>
-            前端 &amp; 设计 by <a href="http://weibo.com/527005659">Alvin</a> 程序 by <a href="http://www.xworm.net/">Ivan</a></p>
+            前端 &amp; 设计 by <a href="http://vincenting.com/">Vincent Ting</a> 程序 by <a href="http://www.xworm.net/">Ivan</a></p>
     </div>
-    <!-- Templates -->
-    <script type="text/template" id="card-item-template">
-        <td class="card_id"><%- card_id %></td>
-        <td class="find_place"><%- place %></td>
-        <td class="find_date"><%- date %></td>
-    </script>
-    <script type="text/template" id="card-sidebar-template">
-        <div id="card_list">
-            <h3>一卡通寻物 &amp; 招领</h3>
-            <div id="card_search">
-                <input  id="the_card_id" value="输入你的学号">
-                <button id="find_card">查询</button>
-            </div>
-            <table>
-            </table>
-        </div>
-    </script>
-    <script type="text/template" id="item-template">
-        <div class="one transition <%- state %>">
-            <p class="name"><%- name %></p>
-            <span class="place"><%- place %></span>
-            <span class="date"><%- date %></span>
-            <p class="info">
-                <%- info %>
-            </p>
-        </div>
-    </script>
-    <script type="text/template" id="home-template">
-        <h2>最新招领信息</h2>
-        <div class="main_list" id="home_claim">
-        </div>
-        <h2>最新寻物信息</h2>
-        <div class="main_list" id="home_find">
-        </div>
-    </script>
-    <script type="text/template" id="list-template">
-        <h2><%-title %></h2>
-        <div class="main_list" id="list_content">
-        </div>
-    </script>
-    <script type="text/template" id="navigate-template">
-        <div id="page-navigate">
-            <% if(currentPage>1){ %>
-                <span class="navigate" id="prePage"><a href="#<%- currentUrl %>/<%- currentPage *1-1  %>">上一页</a></span>
-            <% } %>
-            <% if(isNextPage){ %>
-                <span class="navigate" id="nextPage"><a href="#<%- currentUrl %>/<%- currentPage *1+1  %>">下一页</a></span>
-            <% } %>
-        </div>
-    </script>
-    <script type="text/template" id="side-sort-template">
-        <ul id="side-sort">
-            <% _.each(sorts,function(sort){ %>
-                <li class="transition"><a href="#<%-target %>/<%-sort['url'] %>/1"><%-sort['name'] %></a></li>
-            <% }) %>
-        </ul>
-    </script>
+
+    <script data-main="static/js/main.js" src="static/js/core/require-jquery.js" type="text/javascript"></script>
+
 </body>
 </html>

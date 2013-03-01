@@ -1,7 +1,8 @@
-define(["app/view/nav","app/view/card_sidebar","app/view/home_content"],function(setNav,CardSidebar,homeContent){
+define(["view/nav","view/card_sidebar","view/index_content"],
+    function(setNav,CardSidebar,homeContent){
 
     return function(){
-        setNav("home");
+        setNav.call(this,("home"));
         new CardSidebar;
         new homeContent;
     }

@@ -1,27 +1,33 @@
-define(["app/model/card_item","core/backbone"],function(CardItem){
+define(["model/card_item","text!template/card_item.html","core/backbone"],
 
-    return Backbone.View.extend({
+    function(CardItem,card_item){
 
-        model : CardItem,
+        return Backbone.View.extend({
 
-        tagName:  "tr",
+            model : CardItem,
 
-        template: _.template($('#card-item-template').html()),
+            tagName:  "tr",
 
-        events: {
-            "click"   : "href"
-        },
+            template: _.template(card_item),
 
-        href : function(){
-            return appRouter.navigate(this.model.url(),true);
-        },
+            events: {
+                "click"   : "href"
+            },
 
-        render: function() {
-            this.model.hideCard();
-            this.$el.html(this.template(this.model.toJSON()));
-            return this;
-        }
+            href : /**
+             * 点击时跳转到对应的URL
+             * @returns {*}
+             */
+                function(){
+                return appRouter.navigate(this.model.url(),true);
+            },
+
+            render: function() {
+                this.model.hideCard();
+                this.$el.html(this.template(this.model.toJSON()));
+                return this;
+            }
+
+        });
 
     });
-
-});
