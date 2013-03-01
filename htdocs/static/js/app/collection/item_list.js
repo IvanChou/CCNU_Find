@@ -1,4 +1,4 @@
-define(["app/model/item","core/backbone"],function(Item){
+define(["model/common_item","core/backbone"],function(Item){
 
     return Backbone.Collection.extend({
 
@@ -13,7 +13,12 @@ define(["app/model/item","core/backbone"],function(Item){
             }
         },
 
-        setFetchOption : function(key,value){
+        setFetchOption : /**
+         * 修改异步设置
+         * @param key
+         * @param value
+         */
+            function(key,value){
             this.fetchOption.data[key] = value;
         }
 

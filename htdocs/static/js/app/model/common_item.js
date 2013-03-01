@@ -2,8 +2,11 @@ define(["core/backbone"],function(){
 
     return Backbone.Model.extend({
 
-        /*根据id获得最后的url*/
-        url : function(){
+        url : /**
+         * 根据当前ID获取最后的URL地址
+         * @returns {string}
+         */
+            function(){
             return ['#item/',this.get("id")].join("");
         }
 

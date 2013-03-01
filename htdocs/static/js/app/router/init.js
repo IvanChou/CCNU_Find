@@ -1,6 +1,6 @@
-(function(window){
+define(["view/reset","core/backbone"],
 
-    require(["app/view/reset","core/backbone"],function(reset){
+    function(reset){
 
         var AppRouter = Backbone.Router.extend({
 
@@ -18,19 +18,23 @@
                 "card/:id" : "card"
             },
 
-            /*
-            每个路由对应一个router里面文件的名称
-            当当前URL匹配时候会引入对应的文件，并执行返回的方法
-             * */
-            initialize: function() {
-                for(var key in this.routes){
-                    if(!this.routes.hasOwnProperty(key))continue;
-                    var value = this.routes[key];
-                    this.setRoutes.call(this,key,value)
-                }
+            initialize: /**
+             *每个路由对应一个router里面文件的名称
+             *当当前URL匹配时候会引入对应的文件，并执行返回的方法
+             */
+                function() {
+                _.map(this.routes,function(value,key){
+                    this._setRoutes.call(this,key,value)
+                },this)
             },
 
-            setRoutes : function(key,value){
+            _setRoutes : /**
+             * 根据路由的参数还引入相应的函数并执行，并初始化页面
+             * @param key
+             * @param value
+             * @private
+             */
+                function(key,value){
                 this.route(key, value, function(){
                     var args = arguments;
                     reset(function(){
@@ -43,9 +47,10 @@
 
         });
 
-        window.appRouter = new AppRouter;
-        Backbone.history.start();
+
+        return function(){
+            window.appRouter = new AppRouter;
+            Backbone.history.start();
+        }
 
     });
-
-})(window);

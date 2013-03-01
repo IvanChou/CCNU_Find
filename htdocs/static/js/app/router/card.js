@@ -1,4 +1,4 @@
-define(["app/view/nav"],function(setNav){
+define(["view/nav"],function(setNav){
 
     var showSidebar = function(){
 
