@@ -123,8 +123,8 @@ if (file_exists($file)) {
 $c = ucfirst(strtolower($c));
 $c = new $c;
 
-//其余 REQUEST 参数，作为 param array 传入方法中
-$p = array_diff_key($_REQUEST,array(PARAM_CONTROLLER=>'',PARAM_ACTION=>""));
+//其余 GET 参数，作为 param array 传入方法中
+$p = array_diff_key($_GET,array(PARAM_CONTROLLER=>'',PARAM_ACTION=>""));
 
 $c->$a($p);
 

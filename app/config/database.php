@@ -40,54 +40,18 @@ $db_conf['default'] = array(
 // 	'db_port' => '3306',
 // );
 
-//如果是 SAE 环境
-if (defined('SAE_MYSQL_USER')) {
-	/*---------------- SAE 数据库 -----------------*/
+//如果是 Appfog 环境
+if (getenv('VCAP_SERVICES')) {
+    $services_json = json_decode(getenv("VCAP_SERVICES"),true);
+    $mysql_config = $services_json["mysql-5.1"][0]["credentials"];
+
+	/*---------------- Appfog 数据库 -----------------*/
 	$db_conf['default'] = array(
-		'db_username' => SAE_MYSQL_USER,
-		'db_passwd' => SAE_MYSQL_PASS,
-		'db_database' => SAE_MYSQL_DB,
-		'db_host' => SAE_MYSQL_HOST_M,
-		'db_port' => SAE_MYSQL_PORT
+		'db_username' => $mysql_config["username"],
+		'db_passwd' => $mysql_config["password"],
+		'db_database' => $mysql_config["name"],
+		'db_host' => $mysql_config["hostname"],
+		'db_port' => $mysql_config["port"]
 	);
 
-	$db_conf['default_slave'] = array(
-		'db_username' => SAE_MYSQL_USER,
-		'db_passwd' => SAE_MYSQL_PASS,
-		'db_database' => SAE_MYSQL_DB,
-		'db_host' => SAE_MYSQL_HOST_S,
-		'db_port' => SAE_MYSQL_PORT
-	);
 }
-
-
-/*---------------- test 数据库 -----------------*/
-/*
-$db_conf['test'] = array(
-	'db_username' => 'root',
-	'db_passwd' => '123456',
-	'db_database' => 'testdata'
-	'db_host' => 'localhost',	//默认 localhost
-	'db_port' => '3306',		//默认 3306
-);
-
-多个从数据库实现示例
-if (time()%2==0) {
-	$db_conf['test_slave'] = array(
-		'db_username' => 'root',
-		'db_passwd' => '123456',
-		'db_database' => 'testdata',
-		'db_host' => 'localhost',
-		'db_port' => '3306',
-	);
-} else {
-	$db_conf['test_slave'] = array(
-		'db_username' => 'root',
-		'db_passwd' => '123456',
-		'db_database' => 'testdata',
-		'db_host' => 'localhost',
-		'db_port' => '3306',
-	);
-}
-
-*/
