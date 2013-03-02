@@ -1,5 +1,4 @@
-<?php defined('INDEX_PAGE') or die('no entrance'); ?>
-<?php
+<?php defined('INDEX_PAGE') or die('no entrance');
 /**
  * 无需更改框架即可改变系统
  * 
