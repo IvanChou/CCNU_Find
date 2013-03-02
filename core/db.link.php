@@ -1,5 +1,4 @@
-<?php defined('INDEX_PAGE') or die('no entrance'); ?>
-<?php
+<?php defined('INDEX_PAGE') or die('no entrance');
 /**
  * 数据库连接文件
  * 后期可能会支持多种连接方式，暂时仅采用 mysql 

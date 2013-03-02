@@ -1,5 +1,4 @@
-<?php defined('INDEX_PAGE') or die('no entrance'); ?>
-<?php
+<?php defined('INDEX_PAGE') or die('no entrance');
 /**
  * 模型原型
  * 建议继承此原型，后期可能会写功能

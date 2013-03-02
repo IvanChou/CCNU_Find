@@ -1,5 +1,4 @@
-<?php defined('INDEX_PAGE') or die('no entrance'); ?>
-<?php
+<?php defined('INDEX_PAGE') or die('no entrance');
 /**
  * 配置文件
  * 这是你可以修改的文件
@@ -83,21 +82,21 @@ $theme_package = 'default';
 //ext 表示 class+ext 中的文件后缀 ext
 $autoload_config = array(
     array(
-        'path' => APP_NAME . 'lib/',
+        'path' => APP_PATH . 'lib/',
         'ext' => '.class.php',
     ),
     array(
-        'path' => APP_NAME . 'model/',
+        'path' => APP_PATH . 'model/',
         'ext' => '.php',
     ),
 );
 
 //加载扩展函数
-// require APP_NAME . 'func/xxx.php';
-require APP_NAME . 'func/custom.php';
-require APP_NAME . 'func/ccnu.php';
+// require APP_PATH . 'func/xxx.php';
+require APP_PATH . 'func/custom.php';
+require APP_PATH . 'func/ccnu.php';
 
 //加载其它配置文件
-// require APP_NAME . 'config/yyy.php';
-require APP_NAME . 'config/database.php';
-require APP_NAME . 'config/ccnu.php';
+// require APP_PATH . 'config/yyy.php';
+require APP_PATH . 'config/database.php';
+require APP_PATH . 'config/ccnu.php';

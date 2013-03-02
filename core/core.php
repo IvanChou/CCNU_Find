@@ -1,5 +1,4 @@
-<?php defined('INDEX_PAGE') or die('no entrance'); ?>
-<?php
+<?php defined('INDEX_PAGE') or die('no entrance');
 /**
  * WPHP 框架的核心
  * 
@@ -23,7 +22,7 @@ ob_start();
 define('VERSION', '0.4.4');
 
 //加载主配置文件
-require APP_NAME . 'config/main.php';
+require APP_PATH . 'config/main.php';
 
 //设置时区，编码等信息
 header('Content-Type:text/html; charset=' . CHARSET);
@@ -50,14 +49,14 @@ switch (SYS_MODE) {
 }
 
 //核心函数、控制器、模型
-require CORE_NAME . 'func_inner.php';
-require CORE_NAME . 'func.php';
-require CORE_NAME . 'controller.php';
-require CORE_NAME . 'model.php';
+require CORE_PATH . 'func_inner.php';
+require CORE_PATH . 'func.php';
+require CORE_PATH . 'controller.php';
+require CORE_PATH . 'model.php';
 
 if (IS_DB_ACTIVE) {
-	require CORE_NAME . 'db.link.php';
-	require CORE_NAME . 'db.driver.class.php';
+	require CORE_PATH . 'db.link.php';
+	require CORE_PATH . 'db.driver.class.php';
 }
 
 //将 PATH_INFO 和 QUERY_STRING 统一起来
@@ -100,7 +99,7 @@ define('CUR_ACTION', $a);
 function_exists('wphp_custom_before_instance') && wphp_custom_before_instance();
 
 //加载控制器和方法
-$file = APP_NAME . 'controller/' . strtolower($c) . '.php';
+$file = APP_PATH . 'controller/' . strtolower($c) . '.php';
 if (file_exists($file)) {
 	require $file;
 	

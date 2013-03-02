@@ -1,5 +1,4 @@
-<?php defined('INDEX_PAGE') or die('no entrance'); ?>
-<?php
+<?php defined('INDEX_PAGE') or die('no entrance');
 /**
  * 框架私有核心函数
  * 常量私有前缀 WPHP_
@@ -94,7 +93,7 @@ function _load_ca($ca) {
 	$con   = $spilt[0];
 	$c     = DEFAULT_CONTROLLER;
 	$a     = DEFAULT_ACTION;
-	while (!file_exists(APP_NAME . 'controller/' . strtolower($con) . '.php')) {
+	while (!file_exists(APP_PATH . 'controller/' . strtolower($con) . '.php')) {
 		if ($n < $count) {
 			$n++;
 			
@@ -112,7 +111,7 @@ function _load_ca($ca) {
 	}
 
 	// 	echo $n;
-	if (file_exists(APP_NAME . 'controller/' . strtolower($con) . '.php')) {
+	if (file_exists(APP_PATH . 'controller/' . strtolower($con) . '.php')) {
 		$c = $con;
 		if (isset($spilt[$n])) {
 			$a = $spilt[$n];
@@ -159,7 +158,7 @@ function p2q($ca = null) {
 			//处理不在控制器不在根目录的情况
 			$ret_tmp = _load_ca($ca);
 			extract($ret_tmp);
-			for ($i = 1; $i < $n + 2; $i++) {
+			for ($i = 1; $i < $count + 2; $i++) {
 				array_shift($spilt);
 			}
 		}
@@ -255,10 +254,10 @@ function log_error($message = '') {
 		
 		//error_log 函数需要启用完整路径
 		//其实这个完全可以直接 a+ 方式写文件，没必要非得用 error_log 函数
-		$log_path = SYS_PATH . APP_NAME . LOG_PATH . '/' . date('Y-m') . '.txt';
+		$log_path = APP_PATH . LOG_PATH . '/' . date('Y-m') . '.txt';
 		
 		if (function_exists('error_log')) {
-			if (!is_writeable(SYS_PATH . APP_NAME . LOG_PATH . '/')) {
+			if (!is_writeable(APP_PATH . LOG_PATH . '/')) {
 				echo "<br>\n", 'error log permition denied!';
 				die;
 			}
@@ -337,8 +336,8 @@ function _sae_show_error($message = '') {
  */
 function show_404($message = '') {
 	$theme_package = get_conf('theme_package');
-	if (!file_exists(APP_NAME . 'view/' . $theme_package . '/404.php')) {
-		require APP_NAME . 'error/404.php';
+	if (!file_exists(APP_PATH . 'view/' . $theme_package . '/404.php')) {
+		require APP_PATH . 'error/404.php';
 	} else {
 		render('404', array(
 			'message' => $message
@@ -353,7 +352,7 @@ function show_404($message = '') {
  * @param unknown_type $data
  */
 function render($_wphp_render_param_file, $_wphp_render_param_data = array()) {
-	$_wphp_render_realfile = APP_NAME . 'view/' . get_conf('theme_package') . '/' . $_wphp_render_param_file;
+	$_wphp_render_realfile = APP_PATH . 'view/' . get_conf('theme_package') . '/' . $_wphp_render_param_file;
 	$_wphp_render_lastchar = substr($_wphp_render_param_file, -5, 5);
 	if (false === strpos($_wphp_render_lastchar, '.')) {
 		$_wphp_render_realfile = $_wphp_render_realfile . '.php';
@@ -389,7 +388,7 @@ function r($ca, $extra = array(), $code = 302) {
  * @param unknown_type $file
  */
 function load_static($file = 'jquery.js') {
-	$realfile = APP_NAME . 'static/' . $file;
+	$realfile = APP_PATH . 'static/' . $file;
 
 	if (!file_exists($realfile)) {
 		show_404('static file ' . $file . ' unexists');

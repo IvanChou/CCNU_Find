@@ -12,21 +12,22 @@
  * @link http://weibo.com/itbudaoweng
  */
 
-//定义入口文件所在目录
 //如无特殊说明，定义目录均存在尾部斜线，框架内同
-define('SYS_PATH', rtrim(dirname(__FILE__), '\/') . '/');
-
+/* ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ */
 //定义入口文件名称
 define('INDEX_PAGE', basename(__FILE__));
 
-// APP_NAME 和 CORE_NAME 可自己定义
 /* ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ */
+//定义站点根目录路径
+define('SYS_PATH', str_replace('htdocs/api','/',rtrim(dirname(__FILE__),'\/')));
 
+/* ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ */
+// APP_NAME 和 CORE_NAME 可自己定义
 //应用名，存在尾部斜线，这个要注意，尤其是用到比较的时候
-define('APP_NAME', '../../app/');
+define('APP_NAME', 'app/');
 
 //核心文件目录名，存在尾部斜线，这个要注意，尤其是用到比较的时候
-define('CORE_NAME', '../../core/');
+define('CORE_NAME', 'core/');
 
 /* ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ */
 
@@ -37,4 +38,4 @@ define('APP_PATH', SYS_PATH . APP_NAME);
 define('CORE_PATH', SYS_PATH . CORE_NAME);
 
 //载入核心文件
-require CORE_NAME . 'core.php';
+require CORE_PATH . 'core.php';
