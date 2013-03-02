@@ -19,7 +19,7 @@
 * testing
 * production
 */
-define('SYS_MODE', 'development');
+define('SYS_MODE', 'testing');
 
 //是否记录错误日志
 define('IS_LOG', TRUE);

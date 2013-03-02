@@ -9,7 +9,7 @@ $self_conf = array(
 
     'sort' => array(
         //'1' =>  "ykt",
-        '2' =>  "book",
+        '2' =>  "books",
         '3' =>  "apparels",
         '4' =>  "belongs",
         '5' =>  "electronics",
