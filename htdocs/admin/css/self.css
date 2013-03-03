@@ -23,6 +23,10 @@ body {
 }
 #footer {
     background-color: #f5f5f5;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-top: #7ab5d3 solid 1px;
 }
 
 /* Lastly, apply responsive CSS fixes as necessary */
@@ -50,4 +54,30 @@ body {
 
 code {
     font-size: 80%;
+}
+
+/* Table border style getting from bootstrap doc page. */
+.bs-docs-example {
+    position: relative;
+    padding: 39px 19px 14px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+.bs-docs-example:after {
+    content: "为什么华师宿舍不能装空调 o_O~";
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    padding: 3px 7px;
+    font-size: 12px;
+    font-weight: bold;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    color: #9da0a4;
+    -webkit-border-radius: 4px 0 4px 0;
+    -moz-border-radius: 4px 0 4px 0;
+    border-radius: 4px 0 4px 0;
 }

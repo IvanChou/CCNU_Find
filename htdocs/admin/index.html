@@ -7,45 +7,46 @@
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="css/self.css" rel="stylesheet" media="screen">
 </head>
-<body>
-    <!-- Part 1: Wrap all page content here -->
-    <div id="wrap">
+<body data-spy="scroll" data-target=".navbar">
 
-        <!-- Fixed navbar -->
-        <div class="navbar navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container">
-                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="brand" href="#">华大失招后台</a>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav">
-                            <li class="active"><a href="#">Home</a></li>
-                            <li><a href="#manage">Manage</a></li>
-                            <li><a href="#contact">Contact</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
-                                    <li class="divider"></li>
-                                    <li class="nav-header">Nav header</li>
-                                    <li><a href="#">Separated link</a></li>
-                                    <li><a href="#">One more separated link</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div><!--/.nav-collapse -->
-                </div>
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="brand" href="#">华大失招后台</a>
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li class="active"><a href="#home">Home</a></li>
+                        <li><a href="#manage">Manage</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li class="divider"></li>
+                                <li class="nav-header">Nav header</li>
+                                <li><a href="#">Separated link</a></li>
+                                <li><a href="#">One more separated link</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div><!--/.nav-collapse -->
             </div>
         </div>
+    </div>
+
+    <!-- Wrap all page content here -->
+    <div id="wrap">
 
         <!-- Begin page content -->
-        <div class="container" id="home" style="display: none">
+        <div class="container" id="home">
             <div class="page-header">
                 <h1>致学弟or学妹：</h1>
             </div>
@@ -53,7 +54,7 @@
             <div class="hero-unit">
                 <p class="lead">这个失物招领系统是我们留给华师的最后一份礼物，在这个小小的系统中，凝聚了许多我们认为将会领先华师任何网站3~5年的新技术和新思想。</p>
                 <p>如果你遇到 <strong>任何问题</strong> 或有任何作品超越了它，请联系我们:<br />
-                    <span class="label">Vincent Ting</span> : <code>asd@sf.com</code><br />
+                    <span class="label">Vincent Ting</span> : <code>homerdd@gmail.com</code><br />
                     <span class="label">Ivan Chou</span> : <code>xworm@xworm.net</code>
                 </p>
 
@@ -63,7 +64,75 @@
             <p>华中师范大学失物招领系统v2.0 后台</p>
         </div>
 
-        <div class="container container-fluid">
+        <div class="container container-fluid" id="manage">
+            <div class="row-fluid">
+                <div class="span3">
+                    <div class="well sidebar-nav">
+                        <ul class="nav nav-list">
+                            <li class="nav-header">信息类别</li>
+                            <li class="active"><a href="#">招领信息</a></li>
+                            <li><a href="#">寻物信息</a></li>
+                            <li class="nav-header">信息分类</li>
+                            <li><a href="#">Link</a></li>
+                            <li><a href="#">Link</a></li>
+                            <li><a href="#">Link</a></li>
+                            <li><a href="#">Link</a></li>
+                            <li><a href="#">Link</a></li>
+                            <li><a href="#">Link</a></li>
+                            <li class="nav-header">信息状态</li>
+                            <li><a href="#">进行中</a></li>
+                            <li><a href="#">已成功</a></li>
+                            <li><a href="#">过期</a></li>
+                        </ul>
+                    </div><!--/.well -->
+                </div>
+                <div class="span9">
+                    <div class="bs-docs-example">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Product</th>
+                                <th>Payment Taken</th>
+                                <th>Status</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="success">
+                                <td>1</td>
+                                <td>TB - Monthly</td>
+                                <td>01/04/2012</td>
+                                <td>Approved</td>
+                            </tr>
+                            <tr class="error">
+                                <td>2</td>
+                                <td>TB - Monthly</td>
+                                <td>02/04/2012</td>
+                                <td>Declined</td>
+                            </tr>
+                            <tr class="warning">
+                                <td>3</td>
+                                <td>TB - Monthly</td>
+                                <td>03/04/2012</td>
+                                <td>Pending</td>
+                            </tr>
+                            <tr class="info">
+                                <td>4</td>
+                                <td>TB - Monthly</td>
+                                <td>04/04/2012</td>
+                                <td>Call in to confirm</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+            <p>华中师范大学失物招领系统v2.0 后台</p>
+        </div>
+
+        <div class="container container-fluid" id="contact">
             <div class="row-fluid">
                 <div class="span3">
                     <div class="well sidebar-nav">
@@ -95,11 +164,15 @@
                     </div>
                 </div>
             </div>
+
+
+            <p>华中师范大学失物招领系统v2.0 后台</p>
         </div>
 
         <div id="push"></div>
     </div>
 
+    <!-- Fixed footer -->
     <div id="footer">
         <div class="container">
             <p class="muted credit">Site courtesy <a href="http://vincenting.com/">Vincent Ting</a> and <a href="http://ichou.cn">Ichou</a>.</p>
@@ -108,6 +181,7 @@
 
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/self.js"></script>
 
 </body>
 </html>
