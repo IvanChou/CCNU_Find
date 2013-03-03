@@ -81,3 +81,13 @@ code {
     -moz-border-radius: 4px 0 4px 0;
     border-radius: 4px 0 4px 0;
 }
+
+/* Fixed some style for this web page. */
+table td button.close {
+    display: block;
+    float: none;
+    margin: 0 auto;
+}
+table td.my_time {
+    white-space: nowrap;
+}
