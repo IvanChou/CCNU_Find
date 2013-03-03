@@ -7,16 +7,6 @@
 
 $self_conf = array(
 
-    'sort' => array(
-        //'1' =>  "ykt",
-        '2' =>  "books",
-        '3' =>  "apparels",
-        '4' =>  "belongs",
-        '5' =>  "electronics",
-        '6' =>  "cards",
-        '7' =>  "others"
-    ),
-
     'state' => array(
         '0' =>  "process",
         '1' =>  "success",

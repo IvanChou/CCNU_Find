@@ -3,10 +3,12 @@
 class Read extends Controller {
 	
 	public function __construct() {
-		$this->Item = new Item();
-        $this->Card = new Card();
+		$this->Item = Item::load();
+        $this->Card = Card::load();
+        $this->Sort = Sort::load();
 
         $this->self_conf = get_conf('self_conf');
+        $this->sort_conf = $this->Sort->config_sort();
 	}
 
 	public function claim($param) {
@@ -26,8 +28,8 @@ class Read extends Controller {
     }
 
     private  function _pretreat($param) {
-        $sort = isset($param['sort']) ? array_search($param['sort'],$this->self_conf['sort']) : null;
-        $param['sort'] === "all" && $sort = null;
+        $sort = isset($param['sort']) ? array_search($param['sort'],$this->sort_conf) : null;
+        isset($param['sort']) && $param['sort'] === "all" && $sort = null;
         ($sort === false) && show_error("Notice: sort 参数错误.<br>\r\n");
 
         $page = isset($param['page']) ? (int)$param['page'] : 1;

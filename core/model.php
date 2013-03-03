@@ -9,11 +9,21 @@
  *
  */
 
-abstract class Model
-{
+class Model {
 
-    public function __construct() {
+    static $_instance;
+
+    private function __construct() {
         $this->db = $this->connect_db();
+    }
+
+    private function __clone() {}
+
+    public static function load() {
+        if(! (static::$_instance instanceof static)) {
+            static::$_instance = new static();
+        }
+        return static::$_instance;
     }
 
     /**

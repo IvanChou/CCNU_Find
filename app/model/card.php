@@ -1,4 +1,4 @@
-<?php defined('INDEX_PAGE') or die('no entrance');
+<?php
 
 class Card extends Model {
 
