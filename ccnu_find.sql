@@ -1,22 +1,22 @@
 /*
-Navicat MySQL Data Transfer
+ Navicat MySQL Data Transfer
 
-Source Server         : localhost
-Source Server Version : 50529
-Source Host           : localhost:3306
-Source Database       : ccnu_find
+ Source Server         : localhost
+ Source Server Version : 50527
+ Source Host           : localhost
+ Source Database       : ccnu_find
 
-Target Server Type    : MYSQL
-Target Server Version : 50529
-File Encoding         : 65001
+ Target Server Version : 50527
+ File Encoding         : utf-8
 
-Date: 2013-02-26 13:29:01
+ Date: 03/03/2013 23:13:42 PM
 */
 
-SET FOREIGN_KEY_CHECKS=0;
+SET NAMES utf8;
+SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
--- Table structure for `cf_card`
+--  Table structure for `cf_card`
 -- ----------------------------
 DROP TABLE IF EXISTS `cf_card`;
 CREATE TABLE `cf_card` (
@@ -31,12 +31,14 @@ CREATE TABLE `cf_card` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of cf_card
+--  Records of `cf_card`
 -- ----------------------------
+BEGIN;
 INSERT INTO `cf_card` VALUES ('1', '2009213640', '胡正', '物化', '3');
+COMMIT;
 
 -- ----------------------------
--- Table structure for `cf_fuckccnu`
+--  Table structure for `cf_fuckccnu`
 -- ----------------------------
 DROP TABLE IF EXISTS `cf_fuckccnu`;
 CREATE TABLE `cf_fuckccnu` (
@@ -48,11 +50,7 @@ CREATE TABLE `cf_fuckccnu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of cf_fuckccnu
--- ----------------------------
-
--- ----------------------------
--- Table structure for `cf_image`
+--  Table structure for `cf_image`
 -- ----------------------------
 DROP TABLE IF EXISTS `cf_image`;
 CREATE TABLE `cf_image` (
@@ -64,11 +62,7 @@ CREATE TABLE `cf_image` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of cf_image
--- ----------------------------
-
--- ----------------------------
--- Table structure for `cf_info`
+--  Table structure for `cf_info`
 -- ----------------------------
 DROP TABLE IF EXISTS `cf_info`;
 CREATE TABLE `cf_info` (
@@ -93,37 +87,32 @@ CREATE TABLE `cf_info` (
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of cf_info
+--  Records of `cf_info`
 -- ----------------------------
-INSERT INTO `cf_info` VALUES ('2', '2009213663', '2', '5', '火腿肠 黑色 G9', '东八208附近', '1368227611', null, '没什么好说的 可能是被偷了', '0', '1361081787');
-INSERT INTO `cf_info` VALUES ('3', '2009213663', '1', '1', '2009213640', '图书馆9楼 咖啡厅', '1361081787', null, '', '0', '1361081787');
-INSERT INTO `cf_info` VALUES ('4', '2009213663', '2', '3', '白色金立手机带黑保护套', '行政楼副楼二楼', '1368227611', null, '白色触屏智能手机，型号为金立GN106，八成新，外有黑色保护套，里面没有插SIM卡，壁纸为蓝天下的鹅，存有100多个联系人，大量的课件，对我很重要，希望拾到者与我联系，本人将不胜感激!', '0', '1361081787');
-INSERT INTO `cf_info` VALUES ('5', '2009213663', '1', '5', '火腿肠 黑色 G9', '东八208附近', '1368227611', null, '一不小心就捡到了 运气背到家了 谁的？ 来领吧', '0', '1361081787');
-INSERT INTO `cf_info` VALUES ('6', '2009213663', '1', '5', '火腿肠 黑色 G10', '东八209附近', '1368227611', null, '没什么好说的 可能是又被偷了', '0', '1361081787');
+BEGIN;
+INSERT INTO `cf_info` VALUES ('2', '2009213663', '2', '5', '火腿肠 黑色 G9', '东八208附近', '1368227611', null, '没什么好说的 可能是被偷了', '0', '1361081787'), ('3', '2009213663', '1', '1', '2009213640', '图书馆9楼 咖啡厅', '1361081787', null, '', '0', '1361081787'), ('4', '2009213663', '2', '3', '白色金立手机带黑保护套', '行政楼副楼二楼', '1368227611', null, '白色触屏智能手机，型号为金立GN106，八成新，外有黑色保护套，里面没有插SIM卡，壁纸为蓝天下的鹅，存有100多个联系人，大量的课件，对我很重要，希望拾到者与我联系，本人将不胜感激!', '0', '1361081787'), ('5', '2009213663', '1', '5', '火腿肠 黑色 G9', '东八208附近', '1368227611', null, '一不小心就捡到了 运气背到家了 谁的？ 来领吧', '0', '1361081787'), ('6', '2009213663', '1', '5', '火腿肠 黑色 G10', '东八209附近', '1368227611', null, '没什么好说的 可能是又被偷了', '0', '1361081787');
+COMMIT;
 
 -- ----------------------------
--- Table structure for `cf_sort`
+--  Table structure for `cf_sort`
 -- ----------------------------
 DROP TABLE IF EXISTS `cf_sort`;
 CREATE TABLE `cf_sort` (
   `id` tinyint(2) unsigned NOT NULL AUTO_INCREMENT,
   `sort_name` varchar(20) NOT NULL,
+  `sort_code` varchar(16) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of cf_sort
+--  Records of `cf_sort`
 -- ----------------------------
-INSERT INTO `cf_sort` VALUES ('1', '一卡通');
-INSERT INTO `cf_sort` VALUES ('2', '书籍资料');
-INSERT INTO `cf_sort` VALUES ('3', '衣服饰品');
-INSERT INTO `cf_sort` VALUES ('4', '随身物品');
-INSERT INTO `cf_sort` VALUES ('5', '电子数码');
-INSERT INTO `cf_sort` VALUES ('6', '卡类证件');
-INSERT INTO `cf_sort` VALUES ('7', '其他物品');
+BEGIN;
+INSERT INTO `cf_sort` VALUES ('1', '一卡通', 'ykt'), ('2', '书籍资料', 'books'), ('3', '衣服饰品', 'apparels'), ('4', '随身物品', 'belongs'), ('5', '电子数码', 'electronics'), ('6', '卡类证件', 'cards'), ('7', '其他物品', 'others');
+COMMIT;
 
 -- ----------------------------
--- Table structure for `cf_user`
+--  Table structure for `cf_user`
 -- ----------------------------
 DROP TABLE IF EXISTS `cf_user`;
 CREATE TABLE `cf_user` (
@@ -139,6 +128,10 @@ CREATE TABLE `cf_user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of cf_user
+--  Records of `cf_user`
 -- ----------------------------
+BEGIN;
 INSERT INTO `cf_user` VALUES ('2009213663', '周一', '13114375536', 'xworm@xworm.net', '645655198', null, '');
+COMMIT;
+
+SET FOREIGN_KEY_CHECKS = 1;
