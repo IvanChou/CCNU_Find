@@ -9,16 +9,22 @@
  *
  */
 
-class Model {
+abstract class Model {
 
     static $_instance;
 
-    private function __construct() {
+    public function __construct() {
         $this->db = $this->connect_db();
     }
 
     private function __clone() {}
 
+    /**
+     * Use Instance Model for every child model
+     * @author  ichou   <xwormc@gmial.com>  2013/03/04
+     *
+     * @return object
+     */
     public static function load() {
         if(! (static::$_instance instanceof static)) {
             static::$_instance = new static();

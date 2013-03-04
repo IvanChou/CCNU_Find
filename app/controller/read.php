@@ -3,9 +3,9 @@
 class Read extends Controller {
 	
 	public function __construct() {
-		$this->Item = Item::load();
-        $this->Card = Card::load();
-        $this->Sort = Sort::load();
+        $this->Item = new Item();
+        $this->Card = new Card();
+        $this->Sort = new Sort();
 
         $this->self_conf = get_conf('self_conf');
         $this->sort_conf = $this->Sort->config_sort();
@@ -25,6 +25,10 @@ class Read extends Controller {
         $page = isset($param['page']) ? $param['page'] : 1;
         $num = $page < 1 ? $this->self_conf['index_cards'] : $this->self_conf['cards_per_page'];
         out_put($this->_format($this->Card->get_card($num)));
+    }
+
+    public function sort() {
+        out_put($this->Sort->list_sort());
     }
 
     private  function _pretreat($param) {

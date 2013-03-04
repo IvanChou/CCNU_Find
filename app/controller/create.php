@@ -8,9 +8,9 @@
 class Create extends Controller {
 
     public function __construct() {
-        $this->Item = Item::load();
-        $this->Card = Card::load();
-        $this->Sort = Sort::load();
+        $this->Item = new Item();
+        $this->Card = new Card();
+        $this->Sort = new Sort();
 
         var_dump($this->Sort);
 
