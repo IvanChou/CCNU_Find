@@ -91,3 +91,6 @@ table td button.close {
 table td.my_time {
     white-space: nowrap;
 }
+.my_alert {
+    margin-bottom: 0;
+}

@@ -27,7 +27,7 @@ class Read extends Controller {
         out_put($this->_format($this->Card->get_card($num)));
     }
 
-    public function sort() {
+    public function catalog() {
         out_put($this->Sort->list_sort());
     }
 
@@ -36,17 +36,22 @@ class Read extends Controller {
         isset($param['sort']) && $param['sort'] === "all" && $sort = null;
         ($sort === false) && show_error("Notice: sort 参数错误.<br>\r\n");
 
+        $state = isset($param['state']) ? array_search($param['state'],$this->self_conf['state']) : null;
+        isset($param['state']) && $param['state'] === "all" && $state = null;
+        ($state === false) && show_error("Notice: state 参数错误.<br>\r\n");
+
         $page = isset($param['page']) ? (int)$param['page'] : 1;
         $num = $page < 1 ? $this->self_conf['index_items'] : $this->self_conf['items_per_page'];
         $offset = $page > 1 ? ($page-1)*$this->self_conf['items_per_page']+1 : 0;
 
-        return array($sort,$num,$offset);
+        return array($sort,$state,$num,$offset);
     }
 
     private function _format($array) {
         $result = Array();
         foreach($array as $k=>$v) {
             isset($v['id']) && $result[$k]['id']=$v['id'];
+            isset($v['stu_id']) && $result[$k]['stu_id']=$v['stu_id'];
 
             if(isset($v['card_id'])) {
                 $result[$k]['card_id']=$v['card_id'];
@@ -58,7 +63,7 @@ class Read extends Controller {
 
             isset($v['place']) && $result[$k]['place']=$v['place'];
             isset($v['date']) && $result[$k]['date']=date('Y-m-d',$v['date']);
-            //isset($v['time']) && $result[$k]['time']=date('Y-m-d h:i:s',$v['time']);
+            isset($v['time']) && $result[$k]['time']=date('Y-m-d',$v['time']);
         }
 
         return $result;

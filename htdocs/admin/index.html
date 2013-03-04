@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/blackbox.css" rel="stylesheet" media="screen">
     <link href="css/self.css" rel="stylesheet" media="screen">
 </head>
 <body data-spy="scroll" data-target=".navbar">
@@ -70,19 +71,22 @@
                     <div class="well sidebar-nav">
                         <ul class="nav nav-list">
                             <li class="nav-header" id="my_type">信息类别</li>
-                            <li class="active"><a href="#" id="claim">招领信息</a></li>
-                            <li><a href="#" id="find">寻物信息</a></li>
+                            <li class="active my_types"><a href="#" id="claim">招领信息</a></li>
+                            <li class="my_types"><a href="#" id="find">寻物信息</a></li>
                             <li class="nav-header" id="my_sort">信息分类</li>
                             <!-- <li><a href="#">Link</a></li> -->
+                            <li class="active my_sorts"><a href="#">ALL</a></li>
                             <li class="nav-header" id="my_state">信息状态</li>
-                            <li><a href="#">进行中</a></li>
-                            <li><a href="#">已成功</a></li>
-                            <li><a href="#">过期</a></li>
+                            <li class="active my_states"><a href="#" id="process">进行中</a></li>
+                            <li class="my_states"><a href="#" id="success">已成功</a></li>
+                            <li class="my_states"><a href="#" id="locked">过期</a></li>
+                            <li class="my_states"><a href="#">ALL</a></li>
                         </ul>
                     </div><!--/.well -->
                 </div>
                 <div class="span9">
                     <div class="bs-docs-example">
+
                         <table class="table table-hover table-striped">
                             <thead>
                             <tr>
@@ -94,55 +98,8 @@
                                 <th><span class="label label-important">删除</span></th>
                             </tr>
                             </thead>
-                            <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>白色金立手机带黑保护套</td>
-                                <td>2009213663</td>
-                                <td class="my_time">2013-05-11</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button class="btn btn-mini disabled">进行</button>
-                                        <button class="btn btn-mini">完成</button>
-                                        <button class="btn btn-mini">过期</button>
-                                    </div>
-                                </td>
-                                <td>
-                                    <button class="close">&times;</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>上面挂了一个泰迪熊的手机挂连挂了一个泰迪熊的手机挂连</td>
-                                <td>2009213663</td>
-                                <td class="my_time">2013-05-11</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button class="btn btn-mini disabled">进行</button>
-                                        <button class="btn btn-mini">完成</button>
-                                        <button class="btn btn-mini">过期</button>
-                                    </div>
-                                </td>
-                                <td>
-                                    <button class="close">&times;</button>
-                                </td>
-                            </tr>
-                            <tr class="success">
-                                <td>4</td>
-                                <td>TB - Monthly</td>
-                                <td>2009213663</td>
-                                <td class="my_time">2013-05-11</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button class="btn btn-mini">进行</button>
-                                        <button class="btn btn-mini disabled">完成</button>
-                                        <button class="btn btn-mini">过期</button>
-                                    </div>
-                                </td>
-                                <td>
-                                    <button class="close">&times;</button>
-                                </td>
-                            </tr>
+                            <tbody id="my_table">
+                                <!-- list data -->
                             </tbody>
                         </table>
                     </div>
@@ -203,6 +160,7 @@
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/self.js"></script>
+    <script src="js/jquery.blackbox.min.js"></script>
 
 </body>
 </html>
