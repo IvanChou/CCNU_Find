@@ -1,11 +1,13 @@
 $(document).ready(function(){
+    $.boxLoad();
+
     var my_table = $("#my_table");
 
     $("#contact, #home, #manage").css('min-height',$(window).height());
 
     $("head").append($('<style>.bs-docs-example:after { content: " 你可以不坑爹么？" }</style>'));
 
-    $.get("../api/?method=read&target=catalog",function(result){
+    $.post("../api/?method=read&target=catalog",function(result){
         var node, i = result.length;
 
         while(i--) {
@@ -41,9 +43,12 @@ $(document).ready(function(){
     });
 
     my_table.on("click","tr td button.close",function(){
+        $.boxLoad();
+
         var line = $(this).parents("tr");
         var id = line.children(":first").html();
         $.post("../api/?method=delete",{id:id,safe_code:"safe"},function(result){
+            $.closeBox();
             if(result[0] === 0) {
                 push_error(result[1]);
                 return false;
@@ -51,7 +56,7 @@ $(document).ready(function(){
 
             line.fadeOut(function(){line.remove();});
             return true;
-        })
+        });
     });
 
     get_list();
@@ -63,7 +68,6 @@ $(document).ready(function(){
         box.iframe(url);
         return false;
     });
-
 });
 
 function get_list() {
@@ -73,9 +77,12 @@ function get_list() {
     var url = "../api/?method=read&target=" + type;
     sort && (url += "&sort=" + sort);
     state && (url += "&state=" + state);
+    $.boxLoad();
     clear_page();
 
-    $.get(url,function(result){
+    $.post(url,function(result){
+        $.closeBox();
+
         if(result === false) {
             push_error('好像请求服务器失败了，换个浏览器试试。');
             return false;
@@ -89,7 +96,7 @@ function get_list() {
         }
         return true;
 
-    },"json")
+    },"json");
 }
 
 function build_line(obj) {
@@ -115,8 +122,12 @@ function build_line(obj) {
 }
 
 function set_state(obj,state) {
+    $.boxLoad();
+
     var id = $(obj).parents("tr").children(":first").html();
     $.post("../api/?method=update",{id:id,state:state,safe_code:"safe"},function(result){
+        $.closeBox();
+
         if(result[0] === 0) {
             push_error(result[1]);
             return false;
