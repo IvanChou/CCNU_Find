@@ -31,6 +31,30 @@ class Read extends Controller {
         out_put($this->Sort->list_sort());
     }
 
+    public function admin() {
+        $login_name = isset($_POST['login_name']) ? $_POST['login_name'] : null;
+        $login_psw = isset($_POST['login_psw']) ? $_POST['login_psw'] : null;
+        $safe_code = isset($_POST['safe_code']) ? $_POST['safe_code'] : null;
+        if ($login_name && $login_psw) {
+            $login_psw .= $this->self_conf['salt'];
+            $login_psw = sha1($login_psw);
+
+            if($login_psw == $this->self_conf['admin'][$login_name]) {
+                out_put(array(1,"登陆成功",$login_psw));
+            } else {
+                out_put(array(0,"密码与用户名不匹配"));
+            }
+        }
+        elseif ($safe_code) {
+            if(array_search($safe_code,$this->self_conf['admin'])){
+                out_put(array(1,"cookie有效，已经登陆"));
+            } else {
+                out_put(array(0,"警告，别随便拿个cookie来忽悠我"));
+            }
+        }
+
+    }
+
     private  function _pretreat($param) {
         $sort = isset($param['sort']) ? array_search($param['sort'],$this->sort_conf) : null;
         isset($param['sort']) && $param['sort'] === "all" && $sort = null;

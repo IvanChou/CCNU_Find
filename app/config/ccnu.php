@@ -8,14 +8,19 @@
 $self_conf = array(
 
     'state' => array(
-        '0' =>  "process",
-        '1' =>  "success",
-        '-1' =>  "locked"
+        '0'     =>  "process",
+        '1'     =>  "success",
+        '-1'    =>  "locked"
     ),
 
-    'index_items'   =>  5,
-    'index_cards'    =>  8,
+    'index_items'       =>  5,
+    'index_cards'       =>  8,
     'items_per_page'    =>  10,
-    'cards_per_page'     =>  10,
+    'cards_per_page'    =>  10,
 
+    'salt'  =>  "ichou",
+
+    'admin' =>  array(
+        'ichou' =>  "4834c4579485b211786dee2135a2a4fd586b19e4"
+    )
 );

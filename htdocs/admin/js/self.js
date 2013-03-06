@@ -1,6 +1,13 @@
 $(document).ready(function(){
     $.boxLoad();
 
+    safe_code = $.cookie('safe_code');
+    if(safe_code) {
+        $.post("../api/?method=read&target=admin",{safe_code:safe_code},function(result){
+            if(result[0] === 0) { self.location = 'signin.html';}
+        },"json")
+    } else self.location = 'signin.html';
+
     var my_table = $("#my_table");
 
     $("#contact, #home, #manage").css('min-height',$(window).height());
