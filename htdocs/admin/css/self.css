@@ -96,7 +96,13 @@ table td.my_time {
 }
 .my_admin_01 {
     height: 270px;
+    background-color: #f7f7f7;
 }
 .my_admin_02 {
     height: 120px;
+    background-color: #f7f7f7;
+}
+.my_sort {
+    width: 95%;
+    margin: 10px auto;
 }
