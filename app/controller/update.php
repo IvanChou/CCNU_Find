@@ -10,6 +10,7 @@ class Update extends Controller {
     public function __construct() {
         $this->Item = new Item();
         $this->Card = new Card();
+        $this->Sort = new Sort();
 
         $this->self_conf = get_conf('self_conf');
     }
@@ -30,5 +31,17 @@ class Update extends Controller {
         }
 
         return;
+    }
+
+    public function sort() {
+        $id = isset($_POST["id"]) ? (int)$_POST["id"] : null;
+        $sort_name = isset($_POST["sort_name"]) ? $_POST["sort_name"] : null;
+        $sort_code = isset($_POST["sort_code"]) ? $_POST["sort_code"] : null;
+
+        if($this->Sort->change_sort($id,$sort_name,$sort_code)) {
+            out_put(array(1,"操作成功"));
+        } else {
+            out_put(array(0,"哎哟喂，更新失败了耶，重来试试？"));
+        }
     }
 }

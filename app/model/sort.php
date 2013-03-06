@@ -15,11 +15,25 @@ class Sort extends Model {
     }
 
     public function config_sort() {
-        $sorts = self::list_sort();
+        $sorts = $this->list_sort();
         $sort_conf = array();
         foreach($sorts as $k => $v ) {
             $sort_conf[$v['id']] = $v['sort_code'];
         }
         return($sort_conf);
+    }
+
+    public function change_sort($id, $name = null , $code = null) {
+        if($name === null && $code === null) return false;
+        $this->db->set_table("cf_sort");
+
+        //理应检测 $id ,此处忽略...
+        $where = "`id`=$id";
+        $data = array();
+        $name && $data['sort_name'] = $name;
+        $code && $data['sort_code'] = $code;
+
+        return($this->db->update($data, $where));
+
     }
 }

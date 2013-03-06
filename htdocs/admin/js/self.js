@@ -13,6 +13,9 @@ $(document).ready(function(){
         while(i--) {
             node = '<li class="my_sorts"><a href="#" id="' + result[i].sort_code + '">' + result[i].sort_name + '</a></li>';
             $("#my_sort").after(node);
+            node = '<tr><td>' + result[i].id + '</td><td>' + result[i].sort_name + '</td><td>' + result[i].sort_code + '</td>';
+            node += '<td><a href="#myModal" role="button" class="btn btn-mini" data-toggle="modal">Change</a></td></tr>';
+            $(".my_sort tbody").prepend(node);
         }
     },"json");
 
@@ -59,6 +62,23 @@ $(document).ready(function(){
         });
     });
 
+    $(".my_sort tbody").on("click","tr td a",function(){
+        var tr = $(this).parents("tr");
+        var id = tr.children(":first").html();
+        $("#myModalLabel").html("栏目修改 <span class=\"label label-info\">#"+id+"</span>");
+        $("#sort_id").val(id);
+        $("#frt_input").val(tr.children(":eq(1)").html());
+        $("#sec_input").val(tr.children(":eq(2)").html());
+
+    });
+
+    $("#my_submit").click(function(){
+        var id = $("#sort_id").val();
+
+        ((id === "") && change_admin()) || change_sort(id);
+
+    });
+
     get_list();
 
     var box = new BlackBox();
@@ -68,6 +88,10 @@ $(document).ready(function(){
         box.iframe(url);
         return false;
     });
+
+    $("input:text").focus(function(){
+        $(this).parents(".control-group").removeClass("error");
+    })
 });
 
 function get_list() {
@@ -137,6 +161,39 @@ function set_state(obj,state) {
         $(obj).addClass("disabled");
         return true;
     },"json")
+}
+
+function change_sort(id) {
+    var first = $("#frt_input_group");
+    var second = $("#sec_input_group");
+    var sort_name = $("#frt_input").val();
+    var sort_code = $("#sec_input").val();
+    var sc_regex = /^[a-z]{1,16}$/;
+
+    if (!sc_regex.exec(sort_code)) {
+        second.addClass("error");
+        second.find("span").html("仅限小写字母");
+        return false;
+    }
+
+    $.boxLoad();
+    $.post("../api/?method=update&target=sort",{id:id,sort_name:sort_name,sort_code:sort_code,safe_code:"safe"},function(result){
+        $.closeBox();
+        if(result[0] === 0) {
+            push_error(result[1]);
+            return false;
+        }
+
+        $(".my_sort tbody tr").each(function(){
+            if($(this).children(":first").html() == id) {
+                $(this).children(":eq(1)").html(sort_name);
+                $(this).children(":eq(2)").html(sort_code);
+            }
+        });
+        $('#myModal').modal('hide');
+        return true;
+    },"json");
+    return true;
 }
 
 function push_error(string) {

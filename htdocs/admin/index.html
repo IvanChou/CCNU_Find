@@ -128,42 +128,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
+                                <!-- one sort information -->
                             </tbody>
                         </table>
                     </div>
@@ -206,6 +171,36 @@
     <div id="footer">
         <div class="container">
             <p class="muted credit">Site courtesy <a href="http://vincenting.com/">Vincent Ting</a> and <a href="http://ichou.cn">Ichou</a>.</p>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">栏目修改</h3>
+        </div>
+        <div class="modal-body">
+            <form class="form-horizontal">
+                <input type="hidden" id="sort_id" value="">
+                <div class="control-group" id="frt_input_group">
+                    <label class="control-label" for="frt_input">Show name</label>
+                    <div class="controls">
+                        <input type="text" id="frt_input" placeholder="得拿出去见人的名称">
+                    </div>
+                </div>
+                <div class="control-group" id="sec_input_group">
+                    <label class="control-label" for="sec_input">Code name</label>
+                    <div class="controls">
+                        <input type="text" id="sec_input" placeholder="自家人叫的小名,仅英文">
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+            <button class="btn btn-primary" id="my_submit">Save changes</button>
         </div>
     </div>
 
