@@ -39,10 +39,12 @@ class Read extends Controller {
             $login_psw .= $this->self_conf['salt'];
             $login_psw = sha1($login_psw);
 
-            if($login_psw == $this->self_conf['admin'][$login_name]) {
+            if(!isset($this->self_conf['admin'][$login_name])) {
+                out_put(array(0,"呃，你想黑我么？没这个用户好吧 o_O~"));}
+            elseif ($login_psw == $this->self_conf['admin'][$login_name]) {
                 out_put(array(1,"登陆成功",$login_psw));
             } else {
-                out_put(array(0,"密码与用户名不匹配"));
+                out_put(array(2,"介个密码系错地，仔细想想哈～"));
             }
         }
         elseif ($safe_code) {

@@ -8,8 +8,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/blackbox.css" rel="stylesheet" media="screen">
+    <link href="css/messenger.css" rel="stylesheet" media="screen">
+    <link href="css/messenger-theme-future.css" rel="stylesheet" media="screen">
     <link href="css/self.css" rel="stylesheet" media="screen">
 </head>
 
@@ -19,8 +21,12 @@
 
         <form class="form-signin">
             <h2 class="form-signin-heading">Please sign in</h2>
-            <input type="text" class="input-block-level" placeholder="Email address">
-            <input type="password" class="input-block-level" placeholder="Password">
+            <div class="control-group">
+                <input type="text" class="input-block-level" placeholder="Ur Name">
+            </div>
+            <div class="control-group">
+                <input type="password" class="input-block-level" placeholder="Password">
+            </div>
             <label class="checkbox">
                 <input type="checkbox" value="remember-me"> Remember me
             </label>
@@ -30,10 +36,13 @@
     </div> <!-- /container -->
 
     <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/underscore-min.js"></script>
+    <script src="js/backbone-min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.sha1.js"></script>
     <script src="js/jquery.cookie.js"></script>
     <script src="js/jquery.blackbox.min.js"></script>
+    <script src="js/messenger.min.js"></script>
     <script src="js/signin.js"></script>
 </body>
 </html>

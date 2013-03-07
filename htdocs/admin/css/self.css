@@ -127,6 +127,9 @@ table td.my_time {
 .form-signin .checkbox {
     margin-bottom: 10px;
 }
+.form-signin .control-group {
+    margin-bottom: 0;
+}
 .form-signin input[type="text"],
 .form-signin input[type="password"] {
     font-size: 16px;

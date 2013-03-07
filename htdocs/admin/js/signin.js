@@ -12,22 +12,31 @@ $(document).ready(function(){
     }
 
     $(".form-signin button").click(function(){
-        var login_name = $(".form-signin input:text").val();
-        var login_psw = $(".form-signin input:password").val();
-        var remember = $(".form-signin input:checked").val();
+        var form = $(".form-signin");
+        var login_name = form.find("input:text").val();
+        var login_psw = form.find("input:password").val();
+        var remember = form.find("input:checked").val();
+
+        login_name || form.children("div:first").addClass("error");
+        login_psw || form.children("div:eq(1)").addClass("error");
+
         if(login_name && login_psw) {
             login_psw = $.sha1(login_psw);
         } else return false;
 
         $.boxLoad();
         $.post("../api/?method=read&target=admin",{login_name:login_name,login_psw:login_psw},function(result){
+            $.closeBox();
             if(result[0] === 0) {
-                return false;
+                form.children("div:first").addClass("warning");
+                error(result[1]);}
+            else if(result[0] === 2) {
+                form.children("div:eq(1)").addClass("warning");
+                error(result[1]);}
+            else {
+                (remember && $.cookie('safe_code',result[2],{ expires: 30 })) || $.cookie('safe_code',result[2]);
+                self.location = url;
             }
-
-            (remember && $.cookie('safe_code',result[2],{ expires: 30 })) || $.cookie('safe_code',result[2]);
-            self.location = url;
-            return true;
 
         },"json");
 
@@ -35,4 +44,17 @@ $(document).ready(function(){
 
     })
 
+    $("input").focus(function(){
+        $(this).parent().removeClass("error");
+        $(this).parent().removeClass("warning");
+    })
+
 });
+
+function error(str) {
+    $.globalMessenger().post({
+        message: result[1],
+        type: 'error',
+        showCloseButton: true
+    });
+}
