@@ -46,8 +46,8 @@ class Read extends Controller {
             }
         }
         elseif ($safe_code) {
-            if(array_search($safe_code,$this->self_conf['admin'])){
-                out_put(array(1,"cookie有效，已经登陆"));
+            if($user = array_search($safe_code,$this->self_conf['admin'])){
+                out_put(array(1,"cookie有效，已经登陆",$user));
             } else {
                 out_put(array(0,"警告，别随便拿个cookie来忽悠我"));
             }

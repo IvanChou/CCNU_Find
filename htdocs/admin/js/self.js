@@ -4,7 +4,11 @@ $(document).ready(function(){
     safe_code = $.cookie('safe_code');
     if(safe_code) {
         $.post("../api/?method=read&target=admin",{safe_code:safe_code},function(result){
-            if(result[0] === 0) { self.location = 'signin.html';}
+            if(result[0] === 0) {
+                self.location = 'signin.html';
+            } else {
+                $(".navbar-link").html(result[2]).tooltip();
+            }
         },"json")
     } else self.location = 'signin.html';
 
@@ -98,6 +102,11 @@ $(document).ready(function(){
 
     $("input:text").focus(function(){
         $(this).parents(".control-group").removeClass("error");
+    })
+
+    $(".navbar-link").click(function(){
+        $.removeCookie('safe_code');
+        self.location = '../';
     })
 });
 

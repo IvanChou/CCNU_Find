@@ -14,16 +14,18 @@ $(document).ready(function(){
     $(".form-signin button").click(function(){
         var login_name = $(".form-signin input:text").val();
         var login_psw = $(".form-signin input:password").val();
+        var remember = $(".form-signin input:checked").val();
         if(login_name && login_psw) {
             login_psw = $.sha1(login_psw);
         } else return false;
 
+        $.boxLoad();
         $.post("../api/?method=read&target=admin",{login_name:login_name,login_psw:login_psw},function(result){
             if(result[0] === 0) {
                 return false;
             }
 
-            $.cookie('safe_code',result[2],{ expires: 30 });
+            (remember && $.cookie('safe_code',result[2],{ expires: 30 })) || $.cookie('safe_code',result[2]);
             self.location = url;
             return true;
 
