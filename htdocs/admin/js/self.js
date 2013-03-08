@@ -63,14 +63,10 @@ $(document).ready(function(){
         var id = line.children(":first").html();
         $.post("../api/?method=delete",{id:id,safe_code:"safe"},function(result){
             $.closeBox();
-            if(result[0] === 0) {
-                push_error(result[1]);
-                return false;
+            if(feed_back(result)){
+                line.fadeOut(function(){line.remove();});
             }
-
-            line.fadeOut(function(){line.remove();});
-            return true;
-        });
+        },"json");
     });
 
     $(".my_sort tbody").on("click","tr td a",function(){
@@ -124,12 +120,12 @@ function get_list() {
         $.closeBox();
 
         if(result === false) {
-            push_error('好像请求服务器失败了，换个浏览器试试。');
+            feed_back(new Array(0,'好像请求失败了，换个浏览器试试。'));
             return false;
         }
 
         var node, i;
-        if(result.length === 0) push_warning('啊咧，这个分类下一条信息都没有哦，是这样吧？');
+        if(result.length === 0) feed_back(new Array(1,'啊咧，这个分类还没信息，对吧？'));
         for(i in result) {
             node = build_line(result[i]);
             $("#my_table").append(node);
@@ -167,15 +163,10 @@ function set_state(obj,state) {
     var id = $(obj).parents("tr").children(":first").html();
     $.post("../api/?method=update",{id:id,state:state,safe_code:"safe"},function(result){
         $.closeBox();
-
-        if(result[0] === 0) {
-            push_error(result[1]);
-            return false;
+        if(feed_back(result)){
+            $(obj).siblings().removeClass("disabled");
+            $(obj).addClass("disabled");
         }
-
-        $(obj).siblings().removeClass("disabled");
-        $(obj).addClass("disabled");
-        return true;
     },"json")
 }
 
@@ -195,39 +186,29 @@ function change_sort(id) {
     $.boxLoad();
     $.post("../api/?method=update&target=sort",{id:id,sort_name:sort_name,sort_code:sort_code,safe_code:"safe"},function(result){
         $.closeBox();
-        if(result[0] === 0) {
-            push_error(result[1]);
-            return false;
+        if(feed_back(result)) {
+            $(".my_sort tbody tr").each(function(){
+                if($(this).children(":first").html() == id) {
+                    $(this).children(":eq(1)").html(sort_name);
+                    $(this).children(":eq(2)").html(sort_code);
+                }
+            });
+            $('#myModal').modal('hide');
         }
-
-        $(".my_sort tbody tr").each(function(){
-            if($(this).children(":first").html() == id) {
-                $(this).children(":eq(1)").html(sort_name);
-                $(this).children(":eq(2)").html(sort_code);
-            }
-        });
-        $('#myModal').modal('hide');
-        return true;
     },"json");
     return true;
 }
 
-function push_error(string) {
-    var node = '<div class="alert fade in alert-error my_alert">';
-    node += '<button type="button" class="close" data-dismiss="alert">×</button><strong>o_O~ 出错鸟：</strong>';
-    node += string;
-    node += '</div>';
+function feed_back(array) {
+    var type = array[0] === 1 ? "success" : "error";
 
-    $("div.navbar.navbar-fixed-top").append(node);
-}
+    $.globalMessenger().post({
+        message: array[1],
+        type: type,
+        showCloseButton: true
+    });
 
-function push_warning(string) {
-    var node = '<div class="alert fade in my_alert">';
-    node += '<button type="button" class="close" data-dismiss="alert">×</button><strong>=。= 前面有情况：</strong>';
-    node += string;
-    node += '</div>';
-
-    $("div.navbar.navbar-fixed-top").append(node);
+    return (array[0] === 1);
 }
 
 function clear_page() {
