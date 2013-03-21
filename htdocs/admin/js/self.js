@@ -3,15 +3,20 @@ $(document).ready(function(){
 
     safe_code = $.cookie('safe_code');
     if(safe_code) {
-        $.post("../api/?method=read&target=admin",{safe_code:safe_code},function(result){
+        $.post("../api/?method=read&target=login",{safe_code:safe_code},function(result){
             if(result[0] === 0) {
                 self.location = 'signin.html';
             } else {
                 $(".navbar-link").html(result[2]).tooltip();
+                $("body").removeAttr("style");
+                initialize();
             }
         },"json")
     } else self.location = 'signin.html';
 
+});
+
+function initialize() {
     var my_table = $("#my_table");
 
     $("#contact, #home, #manage").css('min-height',$(window).height());
@@ -27,6 +32,15 @@ $(document).ready(function(){
             node = '<tr><td>' + result[i].id + '</td><td>' + result[i].sort_name + '</td><td>' + result[i].sort_code + '</td>';
             node += '<td><a href="#myModal" role="button" class="btn btn-mini" data-toggle="modal">Change</a></td></tr>';
             $(".my_sort tbody").prepend(node);
+        }
+    },"json");
+
+    $.post("../api/?method=read&target=admin",function(result){
+        var node, i = result.length;
+        while(i--) {
+            node = '<tr><td>' + (i+1) +'</td><td>' + result[i] + '</td>';
+            node += '<td><a href="#myModal" role="button" class="btn btn-mini" data-toggle="modal">Change</a></td></tr>';
+            $(".my_user tbody").prepend(node);
         }
     },"json");
 
@@ -79,10 +93,19 @@ $(document).ready(function(){
 
     });
 
+    $(".my_user tbody").on("click","tr td a",function(){
+        var tr = $(this).parents("tr");
+        var id = tr.children(":first").html();
+        var user = tr.children(":eq(1)").html();
+        $("#myModalLabel").html("帐户修改 <span class=\"label label-info\">#"+id+"</span>");
+        $("#frt_input").val(user).attr("placeholder", user);
+        $("#sec_input").attr("placeholder","新秘密 不修改留空");
+    });
+
     $("#my_submit").click(function(){
         var id = $("#sort_id").val();
 
-        ((id === "") && change_admin()) || change_sort(id);
+        (id === "") ? change_admin() : change_sort(id);
 
     });
 
@@ -98,13 +121,13 @@ $(document).ready(function(){
 
     $("input:text").focus(function(){
         $(this).parents(".control-group").removeClass("error");
-    })
+    });
 
     $(".navbar-link").click(function(){
         $.removeCookie('safe_code');
         self.location = '../';
     })
-});
+}
 
 function get_list() {
     var type = $(".sidebar-nav ul li.active.my_types a").attr("id");
@@ -196,6 +219,28 @@ function change_sort(id) {
             $('#myModal').modal('hide');
         }
     },"json");
+    return true;
+}
+
+function change_admin() {
+    var first = $("#frt_input");
+    var old_name = first.attr("placeholder");
+    var new_name = first.val();
+    var pwd = $("#sec_input").val();
+
+    new_name || (new_name = old_name);
+    if(new_name == old_name && !pwd) return false;
+    var data = pwd ? {old:old_name,new:new_name,pwd: $.sha1(pwd)} : {old:old_name,new:new_name};
+
+    $.boxLoad();
+    $.post("../api/?method=update&target=admin",data,function(result){
+        $.closeBox();
+        if(feed_back(result)) {
+            $('#myModal').modal('hide');
+        }
+    },"json");
+
+    setTimeout('location.reload()',1000);
     return true;
 }
 

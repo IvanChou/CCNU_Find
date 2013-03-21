@@ -19,7 +19,7 @@ define('INDEX_PAGE', basename(__FILE__));
 
 /* ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ */
 //定义站点根目录路径
-define('SYS_PATH', str_replace('htdocs/api','/',rtrim(dirname(__FILE__),'\/')));
+define('SYS_PATH', str_replace('/htdocs/api','/',rtrim(dirname(__FILE__),'\/')));
 
 /* ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ */
 // APP_NAME 和 CORE_NAME 可自己定义

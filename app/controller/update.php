@@ -11,6 +11,7 @@ class Update extends Controller {
         $this->Item = new Item();
         $this->Card = new Card();
         $this->Sort = new Sort();
+        $this->Conf = new Conf();
 
         $this->self_conf = get_conf('self_conf');
     }
@@ -43,5 +44,26 @@ class Update extends Controller {
         } else {
             out_put(array(0,"哎哟喂，更新失败了耶，重来试试？"));
         }
+    }
+
+    public function admin() {
+        $old_name = isset($_POST["old"]) ? $_POST["old"] : null;
+        $new_name = isset($_POST["new"]) ? $_POST["new"] : null;
+        $password = isset($_POST["pwd"]) ? $_POST["pwd"] : null;
+
+        if((!$new_name || $old_name==$new_name) && !$password) {
+            out_put(array(0,"没有更改的样子啊，数据丢失吗？"));
+        }
+
+        if($password) {
+            $password .= $this->self_conf['salt'];
+            $password = sha1($password);
+        }
+
+        if($this->Conf->update_admin($old_name,$new_name,$password)){
+            out_put(array(1,"小Case啦，秒秒钟就搞定了～"));
+        } else {
+            out_put(array(0,"肯定是数据丢失了，重来吧，孩子。"));
+        };
     }
 }

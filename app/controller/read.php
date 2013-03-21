@@ -31,7 +31,7 @@ class Read extends Controller {
         out_put($this->Sort->list_sort());
     }
 
-    public function admin() {
+    public function login() {
         $login_name = isset($_POST['login_name']) ? $_POST['login_name'] : null;
         $login_psw = isset($_POST['login_psw']) ? $_POST['login_psw'] : null;
         $safe_code = isset($_POST['safe_code']) ? $_POST['safe_code'] : null;
@@ -55,6 +55,11 @@ class Read extends Controller {
             }
         }
 
+    }
+
+    public function admin() {
+
+        out_put(array_keys($this->self_conf['admin']));
     }
 
     private  function _pretreat($param) {

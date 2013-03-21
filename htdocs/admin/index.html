@@ -10,7 +10,7 @@
     <link href="css/messenger-theme-future.css" rel="stylesheet" media="screen">
     <link href="css/self.css" rel="stylesheet" media="screen">
 </head>
-<body data-spy="scroll" data-target=".navbar">
+<body data-spy="scroll" data-target=".navbar" style="opacity: 0;">
 
     <!-- Fixed navbar -->
     <div class="navbar navbar-fixed-top">
@@ -140,7 +140,19 @@
                 </li>
                 <li class="span4">
                     <div class="thumbnail my_admin_02">
-
+                        <h6 class="popover-title">用户修改 <small>修改当前用户 ID、PWD</small></h6>
+                        <table class="table table-condensed my_user">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>ID</th>
+                                <th>Operating</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <!-- one sort information -->
+                            </tbody>
+                        </table>
                     </div>
                 </li>
                 <li class="span2">
@@ -213,6 +225,7 @@
     <script src="js/underscore-min.js"></script>
     <script src="js/backbone-min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.sha1.js"></script>
     <script src="js/jquery.cookie.js"></script>
     <script src="js/jquery.blackbox.min.js"></script>
     <script src="js/messenger.min.js"></script>

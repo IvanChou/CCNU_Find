@@ -3,7 +3,7 @@ $(document).ready(function(){
     url = window.location.href.slice(0,-11);
 
     if(safe_code) {
-        $.post("../api/?method=read&target=admin",{safe_code:safe_code},function(result){
+        $.post("../api/?method=read&target=login",{safe_code:safe_code},function(result){
             if(result[0] === 1) {
                 $.cookie('safe_code',safe_code,{ expires: 7 });
                 self.location = url;
@@ -25,7 +25,7 @@ $(document).ready(function(){
         } else return false;
 
         $.boxLoad();
-        $.post("../api/?method=read&target=admin",{login_name:login_name,login_psw:login_psw},function(result){
+        $.post("../api/?method=read&target=login",{login_name:login_name,login_psw:login_psw},function(result){
             if(result[0] === 0) {
                 form.children("div:first").addClass("warning");
                 $.closeBox();
