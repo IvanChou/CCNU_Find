@@ -10,7 +10,7 @@ class Conf extends Model {
         if (!$old_name) return false;
 
         $file_name = APP_PATH . "config/ccnu.php";
-        $fp=fopen($file_name,'r+');
+        $fp=fopen($file_name,'r');
         $file = "";
         while(!feof($fp))
         {
@@ -25,7 +25,7 @@ class Conf extends Model {
                 $file .= $buffer;
             };
         }
-        fseek($fp, 0);
+        $fp=fopen($file_name,'w');
         fwrite($fp,$file);
         fclose($fp);
 

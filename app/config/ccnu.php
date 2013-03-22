@@ -21,15 +21,7 @@ $self_conf = array(
     'salt'  =>  "ichou",
 
     'admin' =>  array(
-        'ichou' =>  "58f8a2f58a83f4b4068e1146ebf0fc84a7065f3c",
-        'xworm' =>  "4834c4579485b211786dee2135a2a4fd586b19e4"
+        'ichou' =>  "4834c4579485b211786dee2135a2a4fd586b19e4",
+        'xworm' =>  "9a477e94445eb8beb8ca0a7b17d2f1bb4b15cd24"
     )
 );
-
-
-
-
-
-
-
-

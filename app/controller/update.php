@@ -61,7 +61,7 @@ class Update extends Controller {
         }
 
         if($this->Conf->update_admin($old_name,$new_name,$password)){
-            out_put(array(1,"小Case啦，秒秒钟就搞定了～"));
+            out_put(array(1,"修改完成，页面刷新ing ～"));
         } else {
             out_put(array(0,"肯定是数据丢失了，重来吧，孩子。"));
         };

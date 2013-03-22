@@ -97,9 +97,10 @@ function initialize() {
         var tr = $(this).parents("tr");
         var id = tr.children(":first").html();
         var user = tr.children(":eq(1)").html();
+        $("#sort_id").val("");
         $("#myModalLabel").html("帐户修改 <span class=\"label label-info\">#"+id+"</span>");
         $("#frt_input").val(user).attr("placeholder", user);
-        $("#sec_input").attr("placeholder","新秘密 不修改留空");
+        $("#sec_input").val("").attr("placeholder","新秘密 不修改留空");
     });
 
     $("#my_submit").click(function(){
@@ -237,10 +238,9 @@ function change_admin() {
         $.closeBox();
         if(feed_back(result)) {
             $('#myModal').modal('hide');
+            setTimeout('location.reload()',1000);
         }
     },"json");
-
-    setTimeout('location.reload()',1000);
     return true;
 }
 
